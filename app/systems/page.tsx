@@ -11,13 +11,13 @@ export default function Systems() {
         
         /* The Pulsing Core */
         @keyframes pulsar-beat {
-          0%, 100% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.4; }
-          50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+          0%, 100% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.2; }
+          50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.5; }
         }
 
         /* The Expanding Energy Rings */
         @keyframes pulsar-ripple {
-          0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0.8; border-width: 4px; }
+          0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0.4; border-width: 2px; }
           100% { transform: translate(-50%, -50%) scale(4); opacity: 0; border-width: 1px; }
         }
         
@@ -29,39 +29,40 @@ export default function Systems() {
           left: 50%;
           margin-top: -125vw;
           margin-left: -125vw;
-          background: radial-gradient(circle at 30% 30%, #3b0764 0%, transparent 45%),
-                      radial-gradient(circle at 70% 70%, #083344 0%, transparent 45%);
-          animation: mobile-spin 12s linear infinite;
+          /* Clean, subtle Cyan and Indigo orbs instead of heavy purple */
+          background: radial-gradient(circle at 30% 30%, rgba(0, 242, 254, 0.1) 0%, transparent 45%),
+                      radial-gradient(circle at 70% 70%, rgba(79, 70, 229, 0.1) 0%, transparent 45%);
+          animation: mobile-spin 20s linear infinite;
         }
 
         .pulsar-core {
           position: absolute;
           top: 25%;
           left: 50%;
-          width: 150px;
-          height: 150px;
-          background: radial-gradient(circle, rgba(0, 242, 254, 0.6) 0%, transparent 70%);
+          width: 120px;
+          height: 120px;
+          background: radial-gradient(circle, rgba(0, 242, 254, 0.4) 0%, transparent 70%);
           border-radius: 50%;
-          animation: pulsar-beat 2s ease-in-out infinite;
+          animation: pulsar-beat 3s ease-in-out infinite;
         }
 
         .pulsar-ring {
           position: absolute;
           top: 25%;
           left: 50%;
-          width: 200px;
-          height: 200px;
-          border: 2px solid rgba(0, 242, 254, 0.5);
+          width: 150px;
+          height: 150px;
+          border: 1px solid rgba(0, 242, 254, 0.3); /* Much softer rings */
           border-radius: 50%;
-          animation: pulsar-ripple 3s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+          animation: pulsar-ripple 4s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
         }
         
         .delay {
-          animation-delay: 1.5s;
+          animation-delay: 2s;
         }
       `}</style>
 
-      {/* Fixed Background Container (Prevents scroll breaking) */}
+      {/* Fixed Background Container */}
       <div style={{ position: 'fixed', inset: 0, overflow: 'hidden', zIndex: 0, pointerEvents: 'none' }}>
         <div className="mobile-safe-bg"></div>
         
@@ -110,5 +111,4 @@ export default function Systems() {
       
     </main>
   );
-}
-
+      }
