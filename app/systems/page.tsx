@@ -1,32 +1,26 @@
 export default function Systems() {
   return (
-    <>
+    <main style={{ position: 'relative', minHeight: '100vh', overflow: 'hidden', backgroundColor: '#020617', margin: 0, padding: 0 }}>
+      
       <style>{`
         @keyframes smooth-spin {
           0% { transform: scale(1.5) rotate(0deg); }
           100% { transform: scale(1.5) rotate(360deg); }
         }
-        
-        .wormhole-bg {
-          position: relative;
-          min-height: 100vh;
-          overflow: hidden;
-          background-color: #020617; /* Deep dark base */
-        }
-
-        .wormhole-bg::before {
-          content: "";
-          position: absolute;
-          inset: -50%; /* Stretches beyond screen to hide edges */
-          /* The exact purple and cyan mix */
-          background: conic-gradient(from 0deg, #020617, #3b0764, #083344, #020617);
-          filter: blur(100px); /* This creates the smooth, misty effect */
-          animation: smooth-spin 15s linear infinite;
-          z-index: -1;
-        }
       `}</style>
 
-      <main className="wormhole-bg" style={{ padding: '0', margin: '0' }}>
+      {/* The Animated Background */}
+      <div style={{
+        position: 'absolute',
+        inset: '-50%',
+        background: 'conic-gradient(from 0deg, #020617, #3b0764, #083344, #020617)',
+        filter: 'blur(80px)',
+        animation: 'smooth-spin 15s linear infinite',
+        zIndex: 0
+      }} />
+
+      {/* All Page Content Wrapper */}
+      <div style={{ position: 'relative', zIndex: 10 }}>
         
         {/* Navigation */}
         <nav style={{ padding: '2rem 5%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -60,7 +54,8 @@ export default function Systems() {
           </div>
 
         </section>
-      </main>
-    </>
+      </div>
+      
+    </main>
   );
 }
