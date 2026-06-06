@@ -1,39 +1,8 @@
-
-// At top of page.tsx, add:
-import { useRouter } from "next/navigation";
-
-// Inside ArticleCard component, add router and wrap the div in an onClick:
-const router = useRouter();
-
-// Change the outer div's onClick:
-onClick={() => router.push(`/articles/${a.slug}`)}
-  "use client";
+"use client";
 
 import { useEffect, useRef, useState } from "react";
-
-const articles = [
-  {
-    tag: "Architecture",
-    tagColor: "#00f2fe",
-    title: "Building Zero-Trust Networks from Scratch",
-    excerpt: "How modern enterprises eliminate implicit trust and verify every request — no matter the source.",
-    min: "6 min read",
-  },
-  {
-    tag: "Cybersecurity",
-    tagColor: "#a78bfa",
-    title: "Threat Hunting: Finding Attackers Before They Strike",
-    excerpt: "Proactive detection strategies that shift security teams from reactive to offensive.",
-    min: "8 min read",
-  },
-  {
-    tag: "Dev",
-    tagColor: "#34d399",
-    title: "Why Every Developer Should Learn Networking",
-    excerpt: "TCP/IP isn't just for sysadmins. Understanding packets makes you a 10x engineer.",
-    min: "5 min read",
-  },
-];
+import { useRouter } from "next/navigation";
+import { articles } from "./data/articles";
 
 const services = [
   { href: "/systems", icon: "⬡", accent: "#00f2fe", label: "Systems", sub: "Architecture & deployment" },
@@ -201,11 +170,8 @@ export default function Home() {
       `}</style>
 
       <main style={{
-        minHeight: "100vh",
-        background: "#050b14",
-        color: "#fff",
-        fontFamily: "'DM Sans', sans-serif",
-        overflowX: "hidden",
+        minHeight: "100vh", background: "#050b14",
+        color: "#fff", fontFamily: "'DM Sans', sans-serif", overflowX: "hidden",
       }}>
         <div style={{ position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none",
           background: "radial-gradient(ellipse 70% 45% at 50% 0%, rgba(0,242,254,0.07) 0%, transparent 65%), radial-gradient(ellipse 50% 40% at 90% 90%, rgba(167,139,250,0.05) 0%, transparent 60%)" }} />
@@ -216,7 +182,6 @@ export default function Home() {
 
         <div style={{ position: "relative", zIndex: 1, maxWidth: "680px", margin: "0 auto", padding: "0 clamp(1rem,5vw,2rem)" }}>
 
-          {/* Nav */}
           <nav style={{
             display: "flex", alignItems: "center", justifyContent: "space-between",
             padding: "1.5rem 0",
@@ -228,7 +193,7 @@ export default function Home() {
             }}>NilcksonTech</span>
             <a href="/courses" style={{
               fontSize: "0.8rem", color: "#2d4a5e", textDecoration: "none",
-              fontFamily: "'DM Sans', sans-serif", letterSpacing: "0.04em", transition: "color .2s",
+              fontFamily: "'DM Sans', sans-serif", transition: "color .2s",
             }}
               onMouseEnter={e => (e.currentTarget.style.color = "#00f2fe")}
               onMouseLeave={e => (e.currentTarget.style.color = "#2d4a5e")}
@@ -237,7 +202,6 @@ export default function Home() {
             </a>
           </nav>
 
-          {/* Hero */}
           <section style={{ padding: "3.5rem 0 3rem" }}>
             <div className="hero-in hero-in-1" style={{
               display: "inline-flex", alignItems: "center", gap: "0.45rem",
@@ -254,7 +218,15 @@ export default function Home() {
               Digital Innovation Hub
             </div>
 
-            
+            <h1 className="hero-in hero-in-2" style={{
+              fontFamily: "'Syne', sans-serif", fontWeight: 900,
+              fontSize: "clamp(2.6rem, 10vw, 4.5rem)",
+              lineHeight: 1.0, letterSpacing: "-0.03em", marginBottom: "1.25rem",
+              background: "linear-gradient(135deg, #fff 0%, #b8d4e8 55%, #00f2fe 100%)",
+              WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
+            }}>
+              NilcksonTech
+            </h1>
 
             <p className="hero-in hero-in-3" style={{
               fontSize: "clamp(0.95rem, 3vw, 1.1rem)", color: "#4a6275",
@@ -303,10 +275,8 @@ export default function Home() {
             </div>
           </section>
 
-          {/* Divider */}
           <div style={{ height: "1px", background: "linear-gradient(90deg,transparent,rgba(0,242,254,0.15),transparent)", margin: "0.5rem 0 3rem" }} />
 
-          {/* Services */}
           <section style={{ marginBottom: "3.5rem" }}>
             <p style={{
               fontSize: "0.68rem", letterSpacing: "0.18em", color: "#1e3a50",
@@ -317,7 +287,6 @@ export default function Home() {
             </div>
           </section>
 
-          {/* Articles */}
           <section style={{ marginBottom: "5rem" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "1.25rem" }}>
               <p style={{
@@ -335,11 +304,10 @@ export default function Home() {
               </a>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
-              {articles.map((a, i) => <ArticleCard key={a.title} a={a} i={i} />)}
+              {articles.map((a, i) => <ArticleCard key={a.slug} a={a} i={i} />)}
             </div>
           </section>
 
-          {/* Footer */}
           <footer style={{
             borderTop: "1px solid rgba(255,255,255,0.05)",
             padding: "1.75rem 0 2.5rem",
@@ -359,4 +327,4 @@ export default function Home() {
       </main>
     </>
   );
-                                              }
+                                   }
