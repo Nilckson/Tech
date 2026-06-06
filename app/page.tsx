@@ -197,7 +197,6 @@ export default function Home() {
   }}>
     <img
       src="/favicon.png"
-      alt="NilcksonTech"
       style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
     />
   </div>
