@@ -99,37 +99,72 @@ export default async function ArticlePage({
               margin: "2rem 0",
             }} />
           </header>
+<article className="prose" style={{ paddingBottom: "5rem" }}>
+  {(() => {
+    const elements: React.ReactNode[] = [];
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
 
-          <article className="prose" style={{ paddingBottom: "5rem" }}>
-            {lines.map((line, i) => {
-              if (line.startsWith("## "))
-                return <h2 key={i}>{line.replace("## ", "")}</h2>;
-              if (line.startsWith("- "))
-                return (
-                  <ul key={i}>
-                    <li dangerouslySetInnerHTML={{
-                      __html: line.replace("- ", "").replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>"),
-                    }} />
-                  </ul>
-                );
-              if (line.match(/^\d\./))
-                return (
-                  <ol key={i}>
-                    <li dangerouslySetInnerHTML={{
-                      __html: line.replace(/^\d\.\s/, "").replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>"),
-                    }} />
-                  </ol>
-                );
-              if (line.trim() === "") return <div key={i} style={{ height: "0.5rem" }} />;
-              return (
-                <p key={i} dangerouslySetInnerHTML={{
-                  __html: line
-                    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-                    .replace(/`(.*?)`/g, "<code>$1</code>"),
-                }} />
-              );
-            })}
-          </article>
+      // Heading
+      if (line.startsWith("## ")) {
+        elements.push(<h2 key={i}>{line.replace("## ", "")}</h2>);
+        i++;
+
+      // Unordered list — group consecutive bullets
+      } else if (line.startsWith("- ")) {
+        const items: string[] = [];
+        while (i < lines.length && lines[i].startsWith("- ")) {
+          items.push(lines[i].replace("- ", ""));
+          i++;
+        }
+        elements.push(
+          <ul key={i}>
+            {items.map((item, j) => (
+              <li key={j} dangerouslySetInnerHTML={{
+                __html: item.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>"),
+              }} />
+            ))}
+          </ul>
+        );
+
+      // Ordered list — group consecutive numbered lines
+      } else if (line.match(/^\d\./)) {
+        const items: string[] = [];
+        while (i < lines.length && lines[i].match(/^\d\./)) {
+          items.push(lines[i].replace(/^\d\.\s/, ""));
+          i++;
+        }
+        elements.push(
+          <ol key={i}>
+            {items.map((item, j) => (
+              <li key={j} dangerouslySetInnerHTML={{
+                __html: item.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>"),
+              }} />
+            ))}
+          </ol>
+        );
+
+      // Empty line
+      } else if (line.trim() === "") {
+        elements.push(<div key={i} style={{ height: "0.5rem" }} />);
+        i++;
+
+      // Paragraph
+      } else {
+        elements.push(
+          <p key={i} dangerouslySetInnerHTML={{
+            __html: line
+              .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+              .replace(/`(.*?)`/g, "<code>$1</code>"),
+          }} />
+        );
+        i++;
+      }
+    }
+    return elements;
+  })()}
+</article>
 
         </div>
       </main>
