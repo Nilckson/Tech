@@ -2,22 +2,42 @@ export default function Systems() {
   return (
     <>
       <style>{`
-        @keyframes wormhole-pan {
-          0% { background-position: 0% 0%; }
-          50% { background-position: 100% 100%; }
-          100% { background-position: 0% 0%; }
+        @keyframes spin-vortex {
+          from { transform: translate(-50%, -50%) rotate(0deg); }
+          to { transform: translate(-50%, -50%) rotate(360deg); }
         }
         
-        .wormhole-bg {
-          /* Using solid colors and 300% size forces the movement to be undeniable */
-          background: radial-gradient(circle at center, #020617 0%, #1e1b4b 45%, #00f2fe 250%);
-          background-size: 300% 300%;
-          animation: wormhole-pan 10s ease-in-out infinite;
+        .wormhole-container {
+          position: relative;
           min-height: 100vh;
+          overflow: hidden;
+          z-index: 1;
+        }
+
+        /* The massive spinning gradient */
+        .wormhole-container::before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 200vmax;
+          height: 200vmax;
+          background: conic-gradient(from 0deg, #020617, #1e1b4b, #00f2fe, #1e1b4b, #020617);
+          animation: spin-vortex 12s linear infinite;
+          z-index: -2;
+        }
+
+        /* The dark center mask making it a "hole" */
+        .wormhole-container::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(circle at center, transparent 10%, rgba(2, 6, 23, 0.8) 50%, #020617 95%);
+          z-index: -1;
         }
       `}</style>
 
-      <main className="wormhole-bg" style={{ padding: '0', margin: '0' }}>
+      <main className="wormhole-container" style={{ padding: '0', margin: '0' }}>
         
         {/* Navigation */}
         <nav style={{ padding: '2rem 5%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
