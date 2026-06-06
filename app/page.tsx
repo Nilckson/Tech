@@ -219,7 +219,6 @@ export default function Home() {
             </div>
 
             
-
             <p className="hero-in hero-in-3" style={{
               fontSize: "clamp(0.95rem, 3vw, 1.1rem)", color: "#4a6275",
               maxWidth: "440px", lineHeight: 1.75, fontWeight: 300,
