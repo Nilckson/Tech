@@ -8,37 +8,33 @@ export default function Systems() {
           0% { transform: translate(-50%, -50%) rotate(0deg); }
           100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
-        
         @keyframes pulse-core {
           0%, 100% { box-shadow: 0 0 30px 10px rgba(0, 242, 254, 0.3), 0 0 60px 20px rgba(8, 51, 68, 0.5); }
           50% { box-shadow: 0 0 50px 15px rgba(0, 242, 254, 0.6), 0 0 90px 30px rgba(8, 51, 68, 0.8); }
         }
-        
         .space-bg {
           position: fixed;
           inset: 0;
-          background-color: #020617; /* Deep space black */
+          background-color: #020617;
           z-index: 0;
           pointer-events: none;
           overflow: hidden;
         }
-
         .pulsar-beam {
           position: absolute;
           top: 50%;
           left: 50%;
           width: 4px;
-          height: 200vh; /* Reaches past the screen edges */
+          height: 200vh;
           background: linear-gradient(to bottom, transparent 0%, rgba(0, 242, 254, 0.8) 45%, #ffffff 50%, rgba(0, 242, 254, 0.8) 55%, transparent 100%);
           box-shadow: 0 0 20px rgba(0, 242, 254, 0.8);
           animation: spin-beam 10s linear infinite;
         }
-
         .pulsar-core {
           position: absolute;
           top: 50%;
           left: 50%;
-          width: 16px; /* Small, bright core */
+          width: 16px;
           height: 16px;
           background: #ffffff;
           border-radius: 50%;
@@ -46,39 +42,67 @@ export default function Systems() {
           animation: pulse-core 2s ease-in-out infinite;
         }
 
-        /* --- Accordion Animations --- */
-        details {
-          background: rgba(15, 23, 42, 0.7);
+        /* --- Dual-Color Cyber Accordion --- */
+        .cyber-card {
+          background: rgba(10, 15, 30, 0.7);
           backdrop-filter: blur(12px);
-          border: 1px solid rgba(0, 242, 254, 0.3);
           border-radius: 12px;
-          padding: 1.5rem;
-          margin-bottom: 1.5rem;
+          padding: 2rem;
+          margin-bottom: 2rem;
+          /* Dual-color borders and glows */
+          border-left: 2px solid #00f2fe; /* Cyan Left */
+          border-right: 2px solid #4ade80; /* Green Right */
+          box-shadow: -20px 0 40px -15px rgba(0, 242, 254, 0.3),
+                       20px 0 40px -15px rgba(74, 222, 128, 0.3);
         }
-        
-        summary {
-          font-size: 1.5rem;
+        .cyber-title {
           color: #00f2fe;
-          font-weight: bold;
+          font-family: monospace;
+          font-size: 1.1rem;
+          letter-spacing: 2px;
+          margin-bottom: 1.5rem;
+          text-transform: uppercase;
+        }
+        details {
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(255, 255, 255, 0.05);
+          border-radius: 8px;
+          margin-bottom: 0.75rem;
+          transition: all 0.3s ease;
+        }
+        summary {
+          padding: 1rem;
+          color: #f8fafc;
+          font-family: monospace;
+          font-size: 1rem;
           cursor: pointer;
-          list-style: none; /* Hides default arrow */
+          list-style: none;
+          display: flex;
+          align-items: center;
           outline: none;
         }
-        
-        summary::-webkit-details-marker {
-          display: none;
+        summary::-webkit-details-marker { display: none; }
+        summary::before {
+          content: '▶';
+          color: #4ade80;
+          margin-right: 12px;
+          font-size: 0.8rem;
+          transition: transform 0.2s ease;
         }
-
+        details[open] summary::before {
+          transform: rotate(90deg);
+          color: #00f2fe;
+        }
         .accordion-content {
-          margin-top: 1rem;
-          padding-top: 1rem;
-          border-top: 1px solid rgba(0, 242, 254, 0.2);
-          color: #cbd5e1;
+          padding: 0 1rem 1rem 2.5rem;
+          color: #94a3b8;
+          font-family: monospace;
+          font-size: 0.9rem;
           line-height: 1.6;
         }
       `}</style>
 
-      {/* Deep Space Background with Pulsar */}
+      {/* Deep Space Background */}
       <div className="space-bg">
         <div className="pulsar-beam"></div>
         <div className="pulsar-core"></div>
@@ -86,7 +110,6 @@ export default function Systems() {
 
       {/* Page Content */}
       <div style={{ position: 'relative', zIndex: 10 }}>
-        
         <nav style={{ padding: '2rem 5%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div style={{ fontSize: '1.5rem', fontWeight: 'bold', letterSpacing: '-0.5px', color: '#fff' }}>
             Nilckson<span style={{ color: '#00f2fe' }}>Tech</span>
@@ -105,19 +128,30 @@ export default function Systems() {
 
         <section style={{ padding: '0 5% 6rem', maxWidth: '800px', margin: '0 auto' }}>
           
-          <details>
-            <summary>Web Application Development</summary>
-            <div className="accordion-content">
-              Leveraging modern frameworks to deliver responsive, dynamic, and highly secure user experiences.
-            </div>
-          </details>
+          <div className="cyber-card">
+            <div className="cyber-title">System Capabilities</div>
+            
+            <details>
+              <summary>Web Application Development</summary>
+              <div className="accordion-content">
+                Leveraging modern frameworks to deliver responsive, dynamic, and highly secure user experiences.
+              </div>
+            </details>
 
-          <details>
-            <summary>Infrastructure & Networking</summary>
-            <div className="accordion-content">
-              Designing distributed systems and secure network topologies to ensure maximum uptime and data integrity.
-            </div>
-          </details>
+            <details>
+              <summary>Infrastructure & Networking</summary>
+              <div className="accordion-content">
+                Designing distributed systems and secure network topologies to ensure maximum uptime and data integrity.
+              </div>
+            </details>
+
+            <details>
+              <summary>Scalable Cloud Hosting</summary>
+              <div className="accordion-content">
+                Deploying optimized, containerized applications to ensure seamless growth and global availability.
+              </div>
+            </details>
+          </div>
 
         </section>
       </div>
