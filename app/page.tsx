@@ -218,15 +218,6 @@ export default function Home() {
               Digital Innovation Hub
             </div>
 
-            <h1 className="hero-in hero-in-2" style={{
-              fontFamily: "'Syne', sans-serif", fontWeight: 900,
-              fontSize: "clamp(2.6rem, 10vw, 4.5rem)",
-              lineHeight: 1.0, letterSpacing: "-0.03em", marginBottom: "1.25rem",
-              background: "linear-gradient(135deg, #fff 0%, #b8d4e8 55%, #00f2fe 100%)",
-              WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
-            }}>
-              NilcksonTech
-            </h1>
 
             <p className="hero-in hero-in-3" style={{
               fontSize: "clamp(0.95rem, 3vw, 1.1rem)", color: "#4a6275",
