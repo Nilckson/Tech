@@ -1,4 +1,4 @@
-import { articles } from "@/data/articles";
+import { articles } from "@/app/data/articles";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
@@ -135,4 +135,4 @@ export default async function ArticlePage({
       </main>
     </>
   );
-                  }
+}
