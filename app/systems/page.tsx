@@ -9,16 +9,16 @@ export default function Systems() {
           100% { transform: rotate(360deg); }
         }
         
-        /* The Pulsing Core */
-        @keyframes pulsar-beat {
-          0%, 100% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.2; }
-          50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.5; }
+        /* White Dwarf / Neutron Star Core */
+        @keyframes star-beat {
+          0%, 100% { transform: translate(-50%, -50%) scale(0.9); box-shadow: 0 0 40px #fff, 0 0 80px #00f2fe; }
+          50% { transform: translate(-50%, -50%) scale(1.1); box-shadow: 0 0 60px #fff, 0 0 120px #00f2fe; }
         }
 
-        /* The Expanding Energy Rings */
-        @keyframes pulsar-ripple {
-          0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0.4; border-width: 2px; }
-          100% { transform: translate(-50%, -50%) scale(4); opacity: 0; border-width: 1px; }
+        /* Expanding Energy Rings */
+        @keyframes star-ripple {
+          0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0.9; border-width: 3px; }
+          100% { transform: translate(-50%, -50%) scale(5); opacity: 0; border-width: 1px; }
         }
         
         .mobile-safe-bg {
@@ -29,36 +29,35 @@ export default function Systems() {
           left: 50%;
           margin-top: -125vw;
           margin-left: -125vw;
-          /* Clean, subtle Cyan and Indigo orbs instead of heavy purple */
-          background: radial-gradient(circle at 30% 30%, rgba(0, 242, 254, 0.1) 0%, transparent 45%),
-                      radial-gradient(circle at 70% 70%, rgba(79, 70, 229, 0.1) 0%, transparent 45%);
-          animation: mobile-spin 20s linear infinite;
+          background: radial-gradient(circle at 30% 30%, #3b0764 0%, transparent 45%),
+                      radial-gradient(circle at 70% 70%, #083344 0%, transparent 45%);
+          animation: mobile-spin 12s linear infinite;
         }
 
-        .pulsar-core {
+        .star-core {
+          position: absolute;
+          top: 25%;
+          left: 50%;
+          width: 90px;
+          height: 90px;
+          background: #ffffff;
+          border-radius: 50%;
+          animation: star-beat 1.5s ease-in-out infinite;
+        }
+
+        .star-ring {
           position: absolute;
           top: 25%;
           left: 50%;
           width: 120px;
           height: 120px;
-          background: radial-gradient(circle, rgba(0, 242, 254, 0.4) 0%, transparent 70%);
+          border: 2px solid #00f2fe;
           border-radius: 50%;
-          animation: pulsar-beat 3s ease-in-out infinite;
-        }
-
-        .pulsar-ring {
-          position: absolute;
-          top: 25%;
-          left: 50%;
-          width: 150px;
-          height: 150px;
-          border: 1px solid rgba(0, 242, 254, 0.3); /* Much softer rings */
-          border-radius: 50%;
-          animation: pulsar-ripple 4s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+          animation: star-ripple 3s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
         }
         
         .delay {
-          animation-delay: 2s;
+          animation-delay: 1.5s;
         }
       `}</style>
 
@@ -66,16 +65,15 @@ export default function Systems() {
       <div style={{ position: 'fixed', inset: 0, overflow: 'hidden', zIndex: 0, pointerEvents: 'none' }}>
         <div className="mobile-safe-bg"></div>
         
-        {/* The Pulsar Elements */}
-        <div className="pulsar-core"></div>
-        <div className="pulsar-ring"></div>
-        <div className="pulsar-ring delay"></div>
+        {/* Neutron Star Elements */}
+        <div className="star-core"></div>
+        <div className="star-ring"></div>
+        <div className="star-ring delay"></div>
       </div>
 
-      {/* All Page Content Wrapper */}
+      {/* Page Content */}
       <div style={{ position: 'relative', zIndex: 10 }}>
         
-        {/* Navigation */}
         <nav style={{ padding: '2rem 5%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div style={{ fontSize: '1.5rem', fontWeight: 'bold', letterSpacing: '-0.5px', color: '#fff' }}>
             Nilckson<span style={{ color: '#00f2fe' }}>Tech</span>
@@ -83,7 +81,6 @@ export default function Systems() {
           <a href="/" style={{ color: '#94a3b8', textDecoration: 'none', fontSize: '0.9rem', fontWeight: '500' }}>← Return Home</a>
         </nav>
 
-        {/* Hero Section */}
         <header style={{ padding: '4rem 5%', textAlign: 'center', maxWidth: '900px', margin: '0 auto' }}>
           <h1 style={{ fontSize: 'clamp(2rem, 8vw, 3.5rem)', fontWeight: '800', lineHeight: '1.2', marginBottom: '1.5rem', color: '#fff' }}>
             Enterprise-Grade <br/>System Architecture
@@ -93,7 +90,6 @@ export default function Systems() {
           </p>
         </header>
 
-        {/* Services Cards */}
         <section style={{ padding: '0 5% 6rem', display: 'flex', flexDirection: 'column', gap: '2rem', maxWidth: '800px', margin: '0 auto' }}>
           
           <div className="neon-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(16px)', border: '1px solid rgba(0, 242, 254, 0.3)', borderRadius: '12px', padding: '2.5rem' }}>
@@ -111,4 +107,4 @@ export default function Systems() {
       
     </main>
   );
-      }
+}
