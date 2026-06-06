@@ -10,8 +10,10 @@ export default function Home() {
         <h2 style={{ borderBottom: '2px solid #111', paddingBottom: '0.5rem' }}>Our Ecosystem</h2>
         <ul style={{ listStyleType: 'none', padding: 0 }}>
           <li style={{ margin: '1rem 0' }}><strong>System Architecture:</strong> Custom web application development and robust network infrastructure setup.</li>
-          <li style={{ margin: '1rem 0' }}><strong>Cybersecurity:</strong> Advanced threat hunting, network auditing, and proactive security solutions.</li>
-          <li style={{ margin: '1rem 0' }}><strong>Tech Courses:</strong> Comprehensive ICT training covering networking, graphic design, and coding fundamentals.</li>
+          <li style={{ margin: '1rem 0' }}>
+  <strong><a href="/cybersecurity" style={{ color: '#0056b3', textDecoration: 'none' }}>Cybersecurity:</a></strong> Advanced threat hunting, network auditing, and proactive security solutions.
+</li>
+   <li style={{ margin: '1rem 0' }}><strong>Tech Courses:</strong> Comprehensive ICT training covering networking, graphic design, and coding fundamentals.</li>
           <li style={{ margin: '1rem 0' }}><strong>Merchandise Store:</strong> Exclusive, high-quality apparel and gear designed for the tech community.</li>
         </ul>
       </section>
