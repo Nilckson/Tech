@@ -136,3 +136,8 @@ export default async function ArticlePage({
     </>
   );
     }
+export async function generateStaticParams() {
+  return articles.map((article) => ({
+    slug: article.slug,
+  }));
+}
