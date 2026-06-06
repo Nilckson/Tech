@@ -21,7 +21,7 @@ const courses = [
     title: "Java Programming",
     desc: "Learn core object-oriented programming concepts, data structures, and robust application development using Java.",
     tags: ["OOP", "Data Structures", "Spring Boot"],
-    articleHref: "#",
+    articleHref: "/articles/java-programming",
     videoSoon: true,
   },
   {
