@@ -3,12 +3,13 @@ export default function Systems() {
     <main style={{ position: 'relative', minHeight: '100vh', margin: 0, padding: 0 }}>
       
       <style>{`
-        /* --- 3D Wormhole Tunnel Animations --- */
+        /* --- Performance-Optimized 3D Wormhole --- */
         @keyframes travel {
-          0% { transform: translateZ(-2500px) rotate(0deg) scale(0.2); opacity: 0; }
-          10% { opacity: 1; }
-          80% { opacity: 1; }
-          100% { transform: translateZ(800px) rotate(180deg) scale(2); opacity: 0; }
+          /* Ends exactly at Z=0 to prevent clipping through your text */
+          0% { transform: translateZ(-1500px) scale(0.1); opacity: 0; }
+          15% { opacity: 1; }
+          75% { opacity: 1; }
+          100% { transform: translateZ(0px) scale(2.5); opacity: 0; } 
         }
 
         @keyframes tunnel-spin {
@@ -19,59 +20,71 @@ export default function Systems() {
         .space-bg {
           position: fixed;
           inset: 0;
-          background-color: #010308; /* Absolute deep space */
-          perspective: 800px;
+          background-color: #010308;
+          perspective: 600px;
           overflow: hidden;
           z-index: 0;
           pointer-events: none;
-          display: flex;
-          align-items: center;
-          justify-content: center;
         }
 
         .tunnel-wrapper {
           position: absolute;
-          inset: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          top: 50%;
+          left: 50%;
+          width: 0;
+          height: 0;
           transform-style: preserve-3d;
-          animation: tunnel-spin 30s linear infinite; /* Slow barrel roll */
+          animation: tunnel-spin 20s linear infinite;
         }
 
         .wormhole-ring {
           position: absolute;
+          top: -45vmin;
+          left: -45vmin;
           width: 90vmin;
           height: 90vmin;
           border-radius: 50%;
-          /* Cyber-energy ring styling */
-          border: 2px solid transparent;
-          border-top: 4px solid rgba(0, 242, 254, 0.8);
-          border-bottom: 4px solid rgba(168, 85, 247, 0.8);
-          border-left: 1px dashed rgba(0, 242, 254, 0.3);
-          border-right: 1px dashed rgba(168, 85, 247, 0.3);
-          box-shadow: 0 0 50px rgba(0, 242, 254, 0.2), inset 0 0 50px rgba(168, 85, 247, 0.2);
-          animation: travel 6s linear infinite;
+          
+          /* Vibrant, multi-colored walls */
+          border-top: 6px solid #00f2fe;    /* Cyan */
+          border-right: 6px solid #a855f7;  /* Purple */
+          border-bottom: 6px solid #ec4899; /* Pink */
+          border-left: 6px solid #3b82f6;   /* Blue */
+          
+          /* Reduced blur radius for smooth 60fps mobile performance */
+          box-shadow: 0 0 15px rgba(0, 242, 254, 0.4), inset 0 0 15px rgba(168, 85, 247, 0.4);
+          animation: travel 4s linear infinite;
+          will-change: transform, opacity; /* Forces hardware acceleration */
         }
 
-        /* The Distant Vanishing Point & Edge Darkening */
         .black-hole-mask {
           position: absolute;
           inset: 0;
-          background: radial-gradient(circle at center, #010308 2%, transparent 30%, #010308 90%);
+          background: radial-gradient(circle at center, #010308 5%, transparent 35%, #010308 100%);
           z-index: 2;
+        }
+
+        /* --- UI Elements --- */
+        .neon-card {
+          background: rgba(10, 15, 30, 0.6);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px); /* Fixes rendering on iPhones */
+          border: 1px solid rgba(0, 242, 254, 0.3);
+          border-radius: 12px;
+          padding: 2.5rem;
+          transform: translateZ(0); /* Forces card to stay strictly above the 3D background */
         }
       `}</style>
 
       {/* 3D Cinematic Wormhole Background */}
       <div className="space-bg">
         <div className="tunnel-wrapper">
-          {/* Generating 20 rings spaced evenly in time to create an infinite tunnel */}
-          {[...Array(20)].map((_, i) => (
+          {/* Reduced from 20 to 12 rings to eliminate lag completely */}
+          {[...Array(12)].map((_, i) => (
             <div 
               key={i} 
               className="wormhole-ring" 
-              style={{ animationDelay: `${i * -0.3}s` }}
+              style={{ animationDelay: `${i * -0.33}s` }}
             ></div>
           ))}
         </div>
@@ -99,12 +112,12 @@ export default function Systems() {
 
         <section style={{ padding: '0 5% 6rem', display: 'flex', flexDirection: 'column', gap: '2rem', maxWidth: '800px', margin: '0 auto' }}>
           
-          <div className="neon-card" style={{ background: 'rgba(10, 15, 30, 0.6)', backdropFilter: 'blur(12px)', border: '1px solid rgba(0, 242, 254, 0.3)', borderRadius: '12px', padding: '2.5rem' }}>
+          <div className="neon-card">
             <h3 style={{ fontSize: '1.5rem', color: '#00f2fe', marginBottom: '1rem', marginTop: '0' }}>Web Application Development</h3>
             <p style={{ color: '#cbd5e1', lineHeight: '1.6', margin: '0' }}>Leveraging modern frameworks to deliver responsive, dynamic, and highly secure user experiences.</p>
           </div>
 
-          <div className="neon-card" style={{ background: 'rgba(10, 15, 30, 0.6)', backdropFilter: 'blur(12px)', border: '1px solid rgba(0, 242, 254, 0.3)', borderRadius: '12px', padding: '2.5rem' }}>
+          <div className="neon-card">
             <h3 style={{ fontSize: '1.5rem', color: '#00f2fe', marginBottom: '1rem', marginTop: '0' }}>Infrastructure & Networking</h3>
             <p style={{ color: '#cbd5e1', lineHeight: '1.6', margin: '0' }}>Designing distributed systems and secure network topologies to ensure maximum uptime and data integrity.</p>
           </div>
@@ -115,3 +128,4 @@ export default function Systems() {
     </main>
   );
 }
+
