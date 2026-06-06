@@ -48,7 +48,7 @@ export default async function ArticlePage({
         <div style={{ position: "relative", zIndex: 1, maxWidth: "680px", margin: "0 auto", padding: "0 clamp(1rem,5vw,2rem)" }}>
 
           <nav style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "1.5rem 0" }}><Link href="/" style={{ display: "flex", alignItems: "center", gap: "0.6rem", textDecoration: "none" }}>
-  <img src="/favicon.png" alt="NilcksonTech" style={{ width: "28px", height: "28px", borderRadius: "6px" }} />
+  <img src="/favicon.png" style={{ width: "28px", height: "28px", borderRadius: "6px" }} />
   <span style={{
     fontFamily: "'Syne', sans-serif", fontWeight: 900, fontSize: "0.95rem",
     letterSpacing: "0.1em", color: "#00f2fe", textTransform: "uppercase",
