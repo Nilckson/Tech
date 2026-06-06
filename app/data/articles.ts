@@ -7,8 +7,7 @@ export const articles = [
     excerpt: "How modern enterprises eliminate implicit trust and verify every request — no matter the source.",
     min: "6 min read",
     date: "Jun 2, 2026",
-    content: `
-Zero trust is a security model based on the principle of never trust, always verify.
+    content: `Zero trust is a security model based on the principle of never trust, always verify.
 
 ## What Is Zero Trust?
 
@@ -28,8 +27,7 @@ Traditional networks operated on a castle-and-moat model — once inside, you we
 2. Map the flows of that data across your network
 3. Architect a zero-trust network around those flows
 4. Create a zero-trust policy for every user and resource
-5. Monitor, maintain, and continuously improve
-    `,
+5. Monitor, maintain, and continuously improve`
   },
   {
     slug: "threat-hunting",
@@ -39,8 +37,7 @@ Traditional networks operated on a castle-and-moat model — once inside, you we
     excerpt: "Proactive detection strategies that shift security teams from reactive to offensive.",
     min: "8 min read",
     date: "May 28, 2026",
-    content: `
-Threat hunting flips the script — instead of waiting for alerts, you actively search for signs of compromise.
+    content: `Threat hunting flips the script — instead of waiting for alerts, you actively search for signs of compromise.
 
 ## Why Threat Hunting Matters
 
@@ -60,8 +57,7 @@ Most breaches go undetected for over 200 days. Automated tools catch known threa
 
 - **Velociraptor** — endpoint visibility and live forensics
 - **Zeek** — network traffic analysis
-- **YARA** — malware pattern matching
-    `,
+- **YARA** — malware pattern matching`
   },
   {
     slug: "developers-learn-networking",
@@ -71,8 +67,7 @@ Most breaches go undetected for over 200 days. Automated tools catch known threa
     excerpt: "TCP/IP isn't just for sysadmins. Understanding packets makes you a 10x engineer.",
     min: "5 min read",
     date: "May 20, 2026",
-    content: `
-Most developers treat the network as a black box. That is a mistake.
+    content: `Most developers treat the network as a black box. That is a mistake.
 
 ## It Makes You a Better Debugger
 
@@ -90,7 +85,6 @@ When your API call fails, do you know how to tell if it is a DNS issue, a routin
 
 - Read curl output
 - Use dig and nslookup
-- Understand CIDR notation and subnetting
-    `,
-  },
+- Understand CIDR notation and subnetting`
+  }
 ];
