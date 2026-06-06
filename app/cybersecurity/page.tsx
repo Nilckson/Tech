@@ -1,29 +1,31 @@
 export default function Cybersecurity() {
   return (
-    <main style={{ fontFamily: 'sans-serif', color: '#111', lineHeight: '1.6', padding: '2rem' }}>
+    <main style={{ padding: '2rem', minHeight: '100vh' }}>
       <div style={{ maxWidth: '800px', margin: '0 auto' }}>
         
-        <a href="/" style={{ color: '#0056b3', textDecoration: 'none' }}>← Back to Home</a>
+        <a href="/" style={{ color: '#00f2fe', textDecoration: 'none', fontWeight: 'bold', display: 'inline-block', marginBottom: '2rem' }}>← Back to Home</a>
         
-        <h1 style={{ fontSize: '2.5rem', marginTop: '1rem' }}>Cybersecurity Services</h1>
-        <p style={{ fontSize: '1.2rem', color: '#444' }}>Protecting infrastructure through proactive offense and defense.</p>
+        <h1 className="vibrant-text" style={{ fontSize: 'clamp(2rem, 8vw, 3rem)', marginTop: '0', marginBottom: '1rem' }}>Cybersecurity Services</h1>
+        <p style={{ fontSize: '1.2rem', color: '#cbd5e1', marginBottom: '3rem', lineHeight: '1.6' }}>Protecting infrastructure through proactive offense and defense.</p>
         
-        <div style={{ marginTop: '3rem' }}>
-          <h2 style={{ borderBottom: '2px solid #111', paddingBottom: '0.5rem' }}>Our Capabilities</h2>
+        <div>
+          <h2 style={{ color: '#f8fafc', borderBottom: '2px solid rgba(0, 242, 254, 0.3)', paddingBottom: '0.5rem', marginBottom: '2rem' }}>Our Capabilities</h2>
           
-          <div style={{ margin: '2rem 0' }}>
-            <h3>Advanced Threat Hunting</h3>
-            <p>Identifying and isolating hidden threats within your network before they execute.</p>
-          </div>
+          <div style={{ display: 'grid', gap: '1.5rem' }}>
+            <div className="neon-card">
+              <h3 style={{ color: '#00f2fe', marginTop: 0, marginBottom: '0.5rem' }}>Advanced Threat Hunting</h3>
+              <p style={{ color: '#cbd5e1', margin: 0, lineHeight: '1.6' }}>Identifying and isolating hidden threats within your network before they execute.</p>
+            </div>
 
-          <div style={{ margin: '2rem 0' }}>
-            <h3>Network Auditing</h3>
-            <p>Comprehensive vulnerability scanning and architecture reviews to ensure maximum resilience.</p>
-          </div>
+            <div className="neon-card">
+              <h3 style={{ color: '#00f2fe', marginTop: 0, marginBottom: '0.5rem' }}>Network Auditing</h3>
+              <p style={{ color: '#cbd5e1', margin: 0, lineHeight: '1.6' }}>Comprehensive vulnerability scanning and architecture reviews to ensure maximum resilience.</p>
+            </div>
 
-          <div style={{ margin: '2rem 0' }}>
-            <h3>Offensive Security</h3>
-            <p>Controlled penetration testing using industry-standard environments to patch exploits.</p>
+            <div className="neon-card">
+              <h3 style={{ color: '#00f2fe', marginTop: 0, marginBottom: '0.5rem' }}>Offensive Security</h3>
+              <p style={{ color: '#cbd5e1', margin: 0, lineHeight: '1.6' }}>Controlled penetration testing using industry-standard environments to patch exploits.</p>
+            </div>
           </div>
         </div>
 
