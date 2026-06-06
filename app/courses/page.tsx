@@ -23,19 +23,35 @@ export default function Courses() {
       </header>
 
       {/* Course Cards */}
-      <section style={{ padding: '0 5% 6rem', display: 'flex', flexDirection: 'column', gap: '2rem', maxWidth: '800px', margin: '0 auto' }}>
+            <section style={{ padding: '0 5% 6rem', display: 'flex', flexDirection: 'column', gap: '2rem', maxWidth: '800px', margin: '0 auto' }}>
         
         <div className="neon-card">
-          <h3 style={{ fontSize: '1.5rem', color: '#00f2fe', marginBottom: '1rem', marginTop: '0' }}>Networking & Security</h3>
-          <p style={{ color: '#cbd5e1', lineHeight: '1.6', margin: '0' }}>Master network topologies, Linux environments, and advanced threat hunting techniques.</p>
+          <h3 style={{ fontSize: '1.5rem', color: '#00f2fe', marginBottom: '1rem', marginTop: '0' }}>Cybersecurity & Ethical Hacking</h3>
+          <p style={{ color: '#cbd5e1', lineHeight: '1.6', margin: '0 0 1.5rem 0' }}>Master offensive security, network auditing, Kali Linux, and advanced threat hunting.</p>
         </div>
 
         <div className="neon-card">
-          <h3 style={{ fontSize: '1.5rem', color: '#00f2fe', marginBottom: '1rem', marginTop: '0' }}>Web Engineering</h3>
-          <p style={{ color: '#cbd5e1', lineHeight: '1.6', margin: '0' }}>Learn to build responsive, dynamic applications using HTML/CSS, Tailwind, and React frameworks.</p>
+          <h3 style={{ fontSize: '1.5rem', color: '#00f2fe', marginBottom: '1rem', marginTop: '0' }}>Java Programming</h3>
+          <p style={{ color: '#cbd5e1', lineHeight: '1.6', margin: '0 0 1.5rem 0' }}>Core object-oriented concepts, data structures, and application development.</p>
+        </div>
+
+        <div className="neon-card">
+          <h3 style={{ fontSize: '1.5rem', color: '#00f2fe', marginBottom: '1rem', marginTop: '0' }}>Database Management & SQL</h3>
+          <p style={{ color: '#cbd5e1', lineHeight: '1.6', margin: '0 0 1.5rem 0' }}>Master relational database design, complex querying, and secure schema structuring.</p>
+        </div>
+
+        <div className="neon-card">
+          <h3 style={{ fontSize: '1.5rem', color: '#00f2fe', marginBottom: '1rem', marginTop: '0' }}>Modern Web Engineering</h3>
+          <p style={{ color: '#cbd5e1', lineHeight: '1.6', margin: '0 0 1.5rem 0' }}>Responsive applications using React, Next.js, and Tailwind CSS.</p>
+        </div>
+
+        <div className="neon-card">
+          <h3 style={{ fontSize: '1.5rem', color: '#00f2fe', marginBottom: '1rem', marginTop: '0' }}>Graphic Design & UI/UX</h3>
+          <p style={{ color: '#cbd5e1', lineHeight: '1.6', margin: '0 0 1.5rem 0' }}>Digital branding, layout structuring, and modern user interface principles.</p>
         </div>
 
       </section>
+
       
     </main>
   );
