@@ -42,10 +42,11 @@ export default function Home() {
             <h3 style={{ color: '#00f2fe', fontSize: '1.5rem', margin: '0 0 0.75rem 0' }}>Cybersecurity →</h3>
             <p style={{ color: '#cbd5e1', margin: 0, lineHeight: '1.6' }}>Advanced threat hunting, network auditing, and proactive security solutions.</p>
           </a>
-          <div className="neon-card">
-            <h3 style={{ color: '#f093fb', fontSize: '1.5rem', margin: '0 0 0.75rem 0' }}>Tech Courses</h3>
-            <p style={{ color: '#cbd5e1', margin: 0, lineHeight: '1.6' }}>Comprehensive ICT training covering networking, graphic design, and coding fundamentals.</p>
-          </div>
+                    <a href="/courses" className="neon-card">
+            <h3 style={{ color: '#e2e8f0', fontSize: '1.5rem', margin: '0 0 0.75rem 0' }}>Tech Courses →</h3>
+            <p style={{ color: '#94a3b8', margin: 0, lineHeight: '1.6' }}>Comprehensive ICT training covering networking, graphic design, and coding fundamentals.</p>
+          </a>
+
           <div className="neon-card">
             <h3 style={{ color: '#f093fb', fontSize: '1.5rem', margin: '0 0 0.75rem 0' }}>Merchandise Store</h3>
             <p style={{ color: '#cbd5e1', margin: 0, lineHeight: '1.6' }}>Exclusive, high-quality apparel and gear designed for the tech community.</p>
