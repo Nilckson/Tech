@@ -3,14 +3,29 @@ export default function Courses() {
   return (
     <main style={{ padding: '0', margin: '0' }}>
       
-            <nav style={{ padding: '2rem 5%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'relative', zIndex: 50 }}>
+                  {/* Navigation */}
+      <nav style={{ padding: '2rem 5%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div style={{ fontSize: '1.5rem', fontWeight: 'bold', letterSpacing: '-0.5px', color: '#fff' }}>
           Nilckson<span style={{ color: '#00f2fe' }}>Tech</span>
         </div>
-        <Link href="/" style={{ color: '#94a3b8', textDecoration: 'none', fontSize: '0.9rem', fontWeight: '500', padding: '0.5rem' }}>
+        
+        {/* Forces the Link to stay on top of all other page elements */}
+        <Link 
+          href="/" 
+          style={{ 
+            color: '#94a3b8', 
+            textDecoration: 'none', 
+            fontSize: '0.9rem', 
+            fontWeight: '500', 
+            padding: '1rem', 
+            position: 'relative', 
+            zIndex: 100 
+          }}
+        >
           ← Return Home
         </Link>
       </nav>
+
 
       {/* Hero Section */}
       <header style={{ padding: '4rem 5%', textAlign: 'center', maxWidth: '900px', margin: '0 auto' }}>
