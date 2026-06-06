@@ -3,7 +3,7 @@ export default function Systems() {
     <main style={{ position: 'relative', minHeight: '100vh', margin: 0, padding: 0 }}>
       
       <style>{`
-        /* --- Pulsar Background Animations --- */
+        /* --- Pulsar & Nebula Background Animations --- */
         @keyframes spin-beam {
           0% { transform: translate(-50%, -50%) rotate(0deg); }
           100% { transform: translate(-50%, -50%) rotate(360deg); }
@@ -12,6 +12,11 @@ export default function Systems() {
           0%, 100% { box-shadow: 0 0 30px 10px rgba(0, 242, 254, 0.3), 0 0 60px 20px rgba(8, 51, 68, 0.5); }
           50% { box-shadow: 0 0 50px 15px rgba(0, 242, 254, 0.6), 0 0 90px 30px rgba(8, 51, 68, 0.8); }
         }
+        @keyframes spin-nebula {
+          0% { transform: translate(-50%, -50%) rotate(0deg); }
+          100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
         .space-bg {
           position: fixed;
           inset: 0;
@@ -20,6 +25,22 @@ export default function Systems() {
           pointer-events: none;
           overflow: hidden;
         }
+
+        /* The Multi-Colored Quadrants */
+        .multicolor-nebula {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 150vmax;
+          height: 150vmax;
+          background:
+            radial-gradient(circle at 75% 25%, rgba(220, 38, 38, 0.25) 0%, transparent 50%),  /* Top Right: Red */
+            radial-gradient(circle at 25% 75%, rgba(34, 197, 94, 0.25) 0%, transparent 50%),   /* Bottom Left: Green */
+            radial-gradient(circle at 25% 25%, rgba(168, 85, 247, 0.3) 0%, transparent 50%),   /* Top Left: Purple */
+            radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.15) 0%, transparent 50%); /* Bottom Right: White */
+          animation: spin-nebula 25s linear infinite;
+        }
+
         .pulsar-beam {
           position: absolute;
           top: 50%;
@@ -30,6 +51,7 @@ export default function Systems() {
           box-shadow: 0 0 20px rgba(0, 242, 254, 0.8);
           animation: spin-beam 10s linear infinite;
         }
+
         .pulsar-core {
           position: absolute;
           top: 50%;
@@ -49,9 +71,8 @@ export default function Systems() {
           border-radius: 12px;
           padding: 2rem;
           margin-bottom: 2rem;
-          /* Dual-color borders and glows */
-          border-left: 2px solid #00f2fe; /* Cyan Left */
-          border-right: 2px solid #4ade80; /* Green Right */
+          border-left: 2px solid #00f2fe; 
+          border-right: 2px solid #4ade80; 
           box-shadow: -20px 0 40px -15px rgba(0, 242, 254, 0.3),
                        20px 0 40px -15px rgba(74, 222, 128, 0.3);
         }
@@ -104,6 +125,7 @@ export default function Systems() {
 
       {/* Deep Space Background */}
       <div className="space-bg">
+        <div className="multicolor-nebula"></div>
         <div className="pulsar-beam"></div>
         <div className="pulsar-core"></div>
       </div>
