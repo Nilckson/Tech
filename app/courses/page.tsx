@@ -31,7 +31,7 @@ const courses = [
     title: "Database Management & SQL",
     desc: "Master relational database design, complex querying, schema structuring, and secure data management.",
     tags: ["SQL", "Schema Design", "PostgreSQL"],
-    articleHref: "#",
+    articleHref: "/articles/database-management-sql",  
     videoSoon: true,
   },
   {
@@ -51,7 +51,7 @@ const courses = [
     title: "Graphic Design & UI/UX",
     desc: "Develop an eye for design. Learn digital branding, layout structuring, and modern user interface principles.",
     tags: ["Figma", "Branding", "UI Systems"],
-    articleHref: "#",
+    articleHref: "/articles/graphic-design-ui-ux",  
     videoSoon: true,
   },
 ];
