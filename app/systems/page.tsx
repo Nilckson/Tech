@@ -1,11 +1,24 @@
 export default function Systems() {
   return (
-    <main style={{ position: 'relative', minHeight: '100vh', margin: 0, padding: 0, overflow: 'hidden' }}>
+    <main style={{ position: 'relative', minHeight: '100vh', margin: 0, padding: 0, backgroundColor: '#020617' }}>
       
       <style>{`
+        /* The Spinning Background */
         @keyframes mobile-spin {
           0% { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }
+        }
+        
+        /* The Pulsing Core */
+        @keyframes pulsar-beat {
+          0%, 100% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.4; }
+          50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+        }
+
+        /* The Expanding Energy Rings */
+        @keyframes pulsar-ripple {
+          0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0.8; border-width: 4px; }
+          100% { transform: translate(-50%, -50%) scale(4); opacity: 0; border-width: 1px; }
         }
         
         .mobile-safe-bg {
@@ -16,17 +29,47 @@ export default function Systems() {
           left: 50%;
           margin-top: -125vw;
           margin-left: -125vw;
-          /* Soft radial gradients instead of heavy blurs */
           background: radial-gradient(circle at 30% 30%, #3b0764 0%, transparent 45%),
                       radial-gradient(circle at 70% 70%, #083344 0%, transparent 45%);
-          background-color: #020617;
           animation: mobile-spin 12s linear infinite;
-          z-index: 0;
+        }
+
+        .pulsar-core {
+          position: absolute;
+          top: 25%;
+          left: 50%;
+          width: 150px;
+          height: 150px;
+          background: radial-gradient(circle, rgba(0, 242, 254, 0.6) 0%, transparent 70%);
+          border-radius: 50%;
+          animation: pulsar-beat 2s ease-in-out infinite;
+        }
+
+        .pulsar-ring {
+          position: absolute;
+          top: 25%;
+          left: 50%;
+          width: 200px;
+          height: 200px;
+          border: 2px solid rgba(0, 242, 254, 0.5);
+          border-radius: 50%;
+          animation: pulsar-ripple 3s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+        }
+        
+        .delay {
+          animation-delay: 1.5s;
         }
       `}</style>
 
-      {/* The Animated Background */}
-      <div className="mobile-safe-bg"></div>
+      {/* Fixed Background Container (Prevents scroll breaking) */}
+      <div style={{ position: 'fixed', inset: 0, overflow: 'hidden', zIndex: 0, pointerEvents: 'none' }}>
+        <div className="mobile-safe-bg"></div>
+        
+        {/* The Pulsar Elements */}
+        <div className="pulsar-core"></div>
+        <div className="pulsar-ring"></div>
+        <div className="pulsar-ring delay"></div>
+      </div>
 
       {/* All Page Content Wrapper */}
       <div style={{ position: 'relative', zIndex: 10 }}>
@@ -68,3 +111,4 @@ export default function Systems() {
     </main>
   );
 }
+
