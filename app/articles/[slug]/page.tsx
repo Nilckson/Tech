@@ -139,3 +139,22 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
     </>
   );
 }
+{
+  slug: "your-article-slug",       // becomes the URL: /articles/your-article-slug
+  tag: "Dev",                       // tag label
+  tagColor: "#34d399",              // tag color
+  title: "Your Article Title",
+  excerpt: "One sentence summary.",
+  min: "4 min read",
+  date: "Jun 6, 2026",
+  content: `
+Your full article content here.
+
+## Section Heading
+
+Paragraph text. **Bold text** works. \`code snippets\` too.
+
+- Bullet point one
+- Bullet point two
+  `,
+},
