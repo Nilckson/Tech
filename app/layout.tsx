@@ -4,8 +4,11 @@ export const metadata: Metadata = {
   title: "NilcksonTech",
   description: "Enterprise systems, cybersecurity, and tech education.",
   icons: {
-    icon: "/favicon.png",
-    apple: "/favicon.png",
+    icon: [
+      { url: "/favicon.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: { url: "/favicon.png", sizes: "180x180", type: "image/png" },
   },
 };
 
@@ -13,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.png" type="image/png" />
+        <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
         <link rel="apple-touch-icon" href="/favicon.png" />
         <style>{`
           body {
