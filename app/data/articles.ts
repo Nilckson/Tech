@@ -50,8 +50,7 @@ Instead of broad firewall rules, zero-trust uses dynamic access policies. Here i
 2. **Implement an Identity Provider:** Centralize authentication (e.g., Okta, Entra ID).
 3. **Deploy an Identity-Aware Proxy:** Put a gateway in front of internal apps so users authenticate before the network connection is even made.`
   },
-
-    {
+  {
     slug: "threat-hunting",
     tag: "Cybersecurity",
     tagColor: "#a78bfa",
@@ -99,7 +98,6 @@ If you see one IP address attempting to connect to 200 different machines on por
 
 A successful hunt doesn't always end with finding an attacker. Often, a hunt reveals misconfigurations or blind spots in your logging. Document everything you find, patch the holes, and refine your hypothesis for the next hunt.`
   },
-
   {
     slug: "developers-learn-networking",
     tag: "Dev",
@@ -150,8 +148,8 @@ curl -v -X GET https://api.nilckson.tech/health
 \`\`\`
 
 Mastering these basics bridges the gap between writing code and deploying resilient, high-performance infrastructure.`
-  }
-{
+  },
+  {
     slug: "database-management-sql",
     tag: "Database",
     tagColor: "#00f2fe",
@@ -159,8 +157,7 @@ Mastering these basics bridges the gap between writing code and deploying resili
     excerpt: "Master relational database design, complex querying, and secure data management from the ground up.",
     min: "7 min read",
     date: "Jun 4, 2026",
-    content: `
-Databases are the backbone of every application. Understanding how to design and query them well separates average developers from great ones.
+    content: `Databases are the backbone of every application. Understanding how to design and query them well separates average developers from great ones.
 
 ## What Is a Relational Database?
 
@@ -210,8 +207,7 @@ Good schema design prevents problems before they happen.
 
 - Install PostgreSQL locally or use a free cloud service like Supabase
 - Learn the basics with SQLZoo or Mode Analytics SQL Tutorial
-- Build a small project — a contacts list or inventory tracker — to practice schema design
-    `,
+- Build a small project — a contacts list or inventory tracker — to practice schema design`
   },
   {
     slug: "graphic-design-ui-ux",
@@ -221,8 +217,7 @@ Good schema design prevents problems before they happen.
     excerpt: "Develop an eye for design. Learn digital branding, layout structuring, and modern user interface principles.",
     min: "6 min read",
     date: "Jun 5, 2026",
-    content: `
-Design is not decoration. Good design solves problems, communicates clearly, and guides the user without them noticing.
+    content: `Design is not decoration. Good design solves problems, communicates clearly, and guides the user without them noticing.
 
 ## The Difference Between Graphic Design and UI/UX
 
@@ -279,7 +274,6 @@ All three overlap. The best designers think in all three dimensions at once.
 - Study interfaces you admire. Ask why they work — what is the hierarchy? What draws your eye first?
 - Redesign an existing app screen as a practice exercise
 - Build a small design system — define your colors, fonts, spacing, and component styles
-- Share your work. Feedback accelerates growth faster than anything else
-    `,
-  },
+- Share your work. Feedback accelerates growth faster than anything else`
+  }
 ];
