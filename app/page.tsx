@@ -1,4 +1,13 @@
-"use client";
+
+// At top of page.tsx, add:
+import { useRouter } from "next/navigation";
+
+// Inside ArticleCard component, add router and wrap the div in an onClick:
+const router = useRouter();
+
+// Change the outer div's onClick:
+onClick={() => router.push(`/articles/${a.slug}`)}
+  "use client";
 
 import { useEffect, useRef, useState } from "react";
 
