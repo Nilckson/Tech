@@ -16,7 +16,7 @@ Traditional networks operated on a castle-and-moat model — once inside, you we
 
 ## Core Principles
 
-**Verify explicitly.** Always authenticate and authorize based on all available data points — identity, location, device health, and more.
+**Verify explicitly.** Always authenticate and authorize based on all available data points.
 
 **Use least privilege access.** Limit user access with just-in-time and just-enough-access policies.
 
@@ -48,7 +48,7 @@ Most breaches go undetected for over 200 days. Automated tools catch known threa
 
 ## The Hunt Process
 
-**Form a hypothesis.** Start with threat intelligence — what TTPs (tactics, techniques, procedures) are attackers using right now?
+**Form a hypothesis.** Start with threat intelligence — what TTPs are attackers using right now?
 
 **Collect and process data.** Logs, endpoint telemetry, network flows — the more visibility, the better.
 
@@ -84,15 +84,12 @@ When your API call fails, do you know how to tell if it's a DNS issue, a routing
 
 **TCP vs UDP.** TCP guarantees delivery and order. UDP is faster but unreliable. Know when to use which.
 
-**HTTP/2 and HTTP/3.** How multiplexing works. Why QUIC matters for performance.
-
 **TLS.** What actually happens in a TLS handshake. Why certificate errors happen.
 
 ## Practical Skills
 
 - Read \`curl -v\` output
 - Use \`dig\` and \`nslookup\`
-- Interpret Wireshark captures
 - Understand CIDR notation and subnetting
     `,
   },
