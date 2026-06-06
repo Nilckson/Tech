@@ -1,74 +1,87 @@
 export default function Systems() {
   return (
-    <main style={{ position: 'relative', minHeight: '100vh', margin: 0, padding: 0, backgroundColor: '#020617' }}>
+    <main style={{ position: 'relative', minHeight: '100vh', margin: 0, padding: 0 }}>
       
       <style>{`
-        /* The Spinning Background */
-        @keyframes mobile-spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
+        /* --- Pulsar Background Animations --- */
+        @keyframes spin-beam {
+          0% { transform: translate(-50%, -50%) rotate(0deg); }
+          100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
         
-        /* White Dwarf / Neutron Star Core */
-        @keyframes star-beat {
-          0%, 100% { transform: translate(-50%, -50%) scale(0.9); box-shadow: 0 0 40px #fff, 0 0 80px #00f2fe; }
-          50% { transform: translate(-50%, -50%) scale(1.1); box-shadow: 0 0 60px #fff, 0 0 120px #00f2fe; }
+        @keyframes pulse-core {
+          0%, 100% { box-shadow: 0 0 30px 10px rgba(0, 242, 254, 0.3), 0 0 60px 20px rgba(8, 51, 68, 0.5); }
+          50% { box-shadow: 0 0 50px 15px rgba(0, 242, 254, 0.6), 0 0 90px 30px rgba(8, 51, 68, 0.8); }
+        }
+        
+        .space-bg {
+          position: fixed;
+          inset: 0;
+          background-color: #020617; /* Deep space black */
+          z-index: 0;
+          pointer-events: none;
+          overflow: hidden;
         }
 
-        /* Expanding Energy Rings */
-        @keyframes star-ripple {
-          0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0.9; border-width: 3px; }
-          100% { transform: translate(-50%, -50%) scale(5); opacity: 0; border-width: 1px; }
-        }
-        
-        .mobile-safe-bg {
+        .pulsar-beam {
           position: absolute;
-          width: 250vw;
-          height: 250vw;
           top: 50%;
           left: 50%;
-          margin-top: -125vw;
-          margin-left: -125vw;
-          background: radial-gradient(circle at 30% 30%, #3b0764 0%, transparent 45%),
-                      radial-gradient(circle at 70% 70%, #083344 0%, transparent 45%);
-          animation: mobile-spin 12s linear infinite;
+          width: 4px;
+          height: 200vh; /* Reaches past the screen edges */
+          background: linear-gradient(to bottom, transparent 0%, rgba(0, 242, 254, 0.8) 45%, #ffffff 50%, rgba(0, 242, 254, 0.8) 55%, transparent 100%);
+          box-shadow: 0 0 20px rgba(0, 242, 254, 0.8);
+          animation: spin-beam 10s linear infinite;
         }
 
-        .star-core {
+        .pulsar-core {
           position: absolute;
-          top: 25%;
+          top: 50%;
           left: 50%;
-          width: 90px;
-          height: 90px;
+          width: 16px; /* Small, bright core */
+          height: 16px;
           background: #ffffff;
           border-radius: 50%;
-          animation: star-beat 1.5s ease-in-out infinite;
+          transform: translate(-50%, -50%);
+          animation: pulse-core 2s ease-in-out infinite;
         }
 
-        .star-ring {
-          position: absolute;
-          top: 25%;
-          left: 50%;
-          width: 120px;
-          height: 120px;
-          border: 2px solid #00f2fe;
-          border-radius: 50%;
-          animation: star-ripple 3s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+        /* --- Accordion Animations --- */
+        details {
+          background: rgba(15, 23, 42, 0.7);
+          backdrop-filter: blur(12px);
+          border: 1px solid rgba(0, 242, 254, 0.3);
+          border-radius: 12px;
+          padding: 1.5rem;
+          margin-bottom: 1.5rem;
         }
         
-        .delay {
-          animation-delay: 1.5s;
+        summary {
+          font-size: 1.5rem;
+          color: #00f2fe;
+          font-weight: bold;
+          cursor: pointer;
+          list-style: none; /* Hides default arrow */
+          outline: none;
+        }
+        
+        summary::-webkit-details-marker {
+          display: none;
+        }
+
+        .accordion-content {
+          margin-top: 1rem;
+          padding-top: 1rem;
+          border-top: 1px solid rgba(0, 242, 254, 0.2);
+          color: #cbd5e1;
+          line-height: 1.6;
         }
       `}</style>
 
-      {/* Fixed Background Container */}
-      <div style={{ position: 'fixed', inset: 0, overflow: 'hidden', zIndex: 0, pointerEvents: 'none' }}>
-        <div className="mobile-safe-bg"></div>
-        
-        {/* Neutron Star Elements */}
-        <div className="star-core"></div>
-        <div className="star-ring"></div>
-        <div className="star-ring delay"></div>
+      {/* Deep Space Background with Pulsar */}
+      <div className="space-bg">
+        <div className="pulsar-beam"></div>
+        <div className="pulsar-core"></div>
       </div>
 
       {/* Page Content */}
@@ -90,17 +103,21 @@ export default function Systems() {
           </p>
         </header>
 
-        <section style={{ padding: '0 5% 6rem', display: 'flex', flexDirection: 'column', gap: '2rem', maxWidth: '800px', margin: '0 auto' }}>
+        <section style={{ padding: '0 5% 6rem', maxWidth: '800px', margin: '0 auto' }}>
           
-          <div className="neon-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(16px)', border: '1px solid rgba(0, 242, 254, 0.3)', borderRadius: '12px', padding: '2.5rem' }}>
-            <h3 style={{ fontSize: '1.5rem', color: '#00f2fe', marginBottom: '1rem', marginTop: '0' }}>Web Application Development</h3>
-            <p style={{ color: '#cbd5e1', lineHeight: '1.6', margin: '0' }}>Leveraging modern frameworks to deliver responsive, dynamic, and highly secure user experiences.</p>
-          </div>
+          <details>
+            <summary>Web Application Development</summary>
+            <div className="accordion-content">
+              Leveraging modern frameworks to deliver responsive, dynamic, and highly secure user experiences.
+            </div>
+          </details>
 
-          <div className="neon-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(16px)', border: '1px solid rgba(0, 242, 254, 0.3)', borderRadius: '12px', padding: '2.5rem' }}>
-            <h3 style={{ fontSize: '1.5rem', color: '#00f2fe', marginBottom: '1rem', marginTop: '0' }}>Infrastructure & Networking</h3>
-            <p style={{ color: '#cbd5e1', lineHeight: '1.6', margin: '0' }}>Designing distributed systems and secure network topologies to ensure maximum uptime and data integrity.</p>
-          </div>
+          <details>
+            <summary>Infrastructure & Networking</summary>
+            <div className="accordion-content">
+              Designing distributed systems and secure network topologies to ensure maximum uptime and data integrity.
+            </div>
+          </details>
 
         </section>
       </div>
