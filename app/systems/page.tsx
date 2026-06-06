@@ -2,42 +2,31 @@ export default function Systems() {
   return (
     <>
       <style>{`
-        @keyframes spin-vortex {
-          from { transform: translate(-50%, -50%) rotate(0deg); }
-          to { transform: translate(-50%, -50%) rotate(360deg); }
+        @keyframes smooth-spin {
+          0% { transform: scale(1.5) rotate(0deg); }
+          100% { transform: scale(1.5) rotate(360deg); }
         }
         
-        .wormhole-container {
+        .wormhole-bg {
           position: relative;
           min-height: 100vh;
           overflow: hidden;
-          z-index: 1;
+          background-color: #020617; /* Deep dark base */
         }
 
-        /* The massive spinning gradient */
-        .wormhole-container::before {
+        .wormhole-bg::before {
           content: "";
           position: absolute;
-          top: 50%;
-          left: 50%;
-          width: 200vmax;
-          height: 200vmax;
-          background: conic-gradient(from 0deg, #020617, #1e1b4b, #00f2fe, #1e1b4b, #020617);
-          animation: spin-vortex 12s linear infinite;
-          z-index: -2;
-        }
-
-        /* The dark center mask making it a "hole" */
-        .wormhole-container::after {
-          content: "";
-          position: absolute;
-          inset: 0;
-          background: radial-gradient(circle at center, transparent 10%, rgba(2, 6, 23, 0.8) 50%, #020617 95%);
+          inset: -50%; /* Stretches beyond screen to hide edges */
+          /* The exact purple and cyan mix */
+          background: conic-gradient(from 0deg, #020617, #3b0764, #083344, #020617);
+          filter: blur(100px); /* This creates the smooth, misty effect */
+          animation: smooth-spin 15s linear infinite;
           z-index: -1;
         }
       `}</style>
 
-      <main className="wormhole-container" style={{ padding: '0', margin: '0' }}>
+      <main className="wormhole-bg" style={{ padding: '0', margin: '0' }}>
         
         {/* Navigation */}
         <nav style={{ padding: '2rem 5%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
