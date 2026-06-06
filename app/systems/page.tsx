@@ -2,16 +2,17 @@ export default function Systems() {
   return (
     <>
       <style>{`
-        @keyframes wormhole {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
+        @keyframes wormhole-pan {
+          0% { background-position: 0% 0%; }
+          50% { background-position: 100% 100%; }
+          100% { background-position: 0% 0%; }
         }
+        
         .wormhole-bg {
-          /* Semi-transparent wormhole to blend with the global tech grid */
-          background: radial-gradient(circle at center, rgba(15, 23, 42, 0.9) 0%, rgba(30, 27, 75, 0.8) 50%, rgba(2, 6, 23, 0.9) 100%);
-          background-size: 200% 200%;
-          animation: wormhole 12s ease-in-out infinite;
+          /* Using solid colors and 300% size forces the movement to be undeniable */
+          background: radial-gradient(circle at center, #020617 0%, #1e1b4b 45%, #00f2fe 250%);
+          background-size: 300% 300%;
+          animation: wormhole-pan 10s ease-in-out infinite;
           min-height: 100vh;
         }
       `}</style>
@@ -31,7 +32,7 @@ export default function Systems() {
           <h1 style={{ fontSize: 'clamp(2rem, 8vw, 3.5rem)', fontWeight: '800', lineHeight: '1.2', marginBottom: '1.5rem' }}>
             Enterprise-Grade <br/>System Architecture
           </h1>
-          <p style={{ fontSize: '1.15rem', color: '#94a3b8', marginBottom: '3rem', lineHeight: '1.6' }}>
+          <p style={{ fontSize: '1.15rem', color: '#cbd5e1', marginBottom: '3rem', lineHeight: '1.6' }}>
             We design, build, and deploy high-performance web applications and resilient network infrastructures tailored for scale.
           </p>
         </header>
