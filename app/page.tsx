@@ -52,9 +52,12 @@ function useInView(threshold = 0.15) {
 function ArticleCard({ a, i }: { a: (typeof articles)[0]; i: number }) {
   const [hov, setHov] = useState(false);
   const { ref, visible } = useInView();
+  const router = useRouter();
+
   return (
     <div
       ref={ref}
+      onClick={() => router.push(`/articles/${a.slug}`)}
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
       style={{
