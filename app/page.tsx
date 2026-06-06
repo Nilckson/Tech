@@ -188,7 +188,11 @@ export default function Home() {
             opacity: mounted ? 1 : 0, transition: "opacity .5s",
           }}>
             <Link href="/" style={{ display: "flex", alignItems: "center", gap: "0.6rem", textDecoration: "none" }}>
-  <img src="/favicon.png" alt="NilcksonTech" style={{ width: "28px", height: "28px", borderRadius: "6px" }} />
+  <img
+  src="/favicon.png"
+  alt="NilcksonTech"
+  style={{ width: "24px", height: "24px", borderRadius: "4px", objectFit: "cover" }}
+/>
   <span style={{
     fontFamily: "'Syne', sans-serif", fontWeight: 900, fontSize: "0.95rem",
     letterSpacing: "0.1em", color: "#00f2fe", textTransform: "uppercase",
