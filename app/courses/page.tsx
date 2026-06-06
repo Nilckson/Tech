@@ -1,13 +1,15 @@
+import Link from 'next/link';
 export default function Courses() {
   return (
     <main style={{ padding: '0', margin: '0' }}>
       
-      {/* Navigation */}
-      <nav style={{ padding: '2rem 5%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <nav style={{ padding: '2rem 5%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'relative', zIndex: 50 }}>
         <div style={{ fontSize: '1.5rem', fontWeight: 'bold', letterSpacing: '-0.5px', color: '#fff' }}>
           Nilckson<span style={{ color: '#00f2fe' }}>Tech</span>
         </div>
-        <a href="/" style={{ color: '#94a3b8', textDecoration: 'none', fontSize: '0.9rem', fontWeight: '500' }}>← Return Home</a>
+        <Link href="/" style={{ color: '#94a3b8', textDecoration: 'none', fontSize: '0.9rem', fontWeight: '500', padding: '0.5rem' }}>
+          ← Return Home
+        </Link>
       </nav>
 
       {/* Hero Section */}
