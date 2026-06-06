@@ -171,6 +171,10 @@ export default function Home() {
         .grid-card:nth-child(2) { animation-delay: 0.45s; }
         .grid-card:nth-child(3) { animation-delay: 0.55s; }
         .grid-card:nth-child(4) { animation-delay: 0.65s; }
+
+        @media (max-width: 600px) {
+          .grid-card { animation-delay: 0s !important; }
+        }
       `}</style>
 
       <main
@@ -180,7 +184,7 @@ export default function Home() {
           color: "#fff",
           fontFamily: "'DM Sans', sans-serif",
           position: "relative",
-          overflow: "hidden",
+          overflowX: "hidden",
         }}
       >
         {/* Background mesh */}
@@ -215,7 +219,7 @@ export default function Home() {
             zIndex: 1,
             maxWidth: "1100px",
             margin: "0 auto",
-            padding: "0 5%",
+            padding: "0 clamp(1rem, 5%, 2rem)",
           }}
         >
           {/* Nav */}
@@ -469,4 +473,5 @@ export default function Home() {
       </main>
     </>
   );
-          }
+            }
+                
