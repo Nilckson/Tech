@@ -275,5 +275,62 @@ All three overlap. The best designers think in all three dimensions at once.
 - Redesign an existing app screen as a practice exercise
 - Build a small design system — define your colors, fonts, spacing, and component styles
 - Share your work. Feedback accelerates growth faster than anything else`
-  }
+  },
+    {
+    slug: "java-programming",
+    tag: "Development",
+    tagColor: "#fde047",
+    title: "Java Programming: Mastering Enterprise Development",
+    excerpt: "Learn core object-oriented programming concepts, data structures, and robust application development using Java.",
+    min: "6 min read",
+    date: "Jun 6, 2026",
+    content: `Java remains the undisputed king of enterprise software. Its "write once, run anywhere" philosophy makes it a foundational language for robust backend systems.
+
+## The JVM Architecture
+
+Unlike languages that compile directly to machine code, Java compiles to bytecode. The Java Virtual Machine (JVM) interprets this bytecode for whatever operating system it runs on. This abstracts away hardware specifics and handles memory management via the Garbage Collector.
+
+## Object-Oriented Principles (OOP)
+
+Java forces you to think in objects. Mastering Java means mastering OOP:
+
+**Encapsulation:** Hiding internal state and requiring all interaction to be performed through an object's methods. Use \`private\` variables and \`public\` getters/setters.
+
+**Inheritance:** Creating new classes based on existing ones. It promotes code reuse but should be used sparingly in favor of composition.
+
+**Polymorphism:** The ability to treat objects of different classes uniformly. Interfaces are your best friend here.
+
+## The Collections Framework
+
+You will rarely write arrays from scratch. The Collections framework provides optimized data structures:
+
+- **ArrayList:** Fast reads, slow insertions. Backed by a dynamic array.
+- **LinkedList:** Fast insertions, slow reads. Good for queue implementations.
+- **HashMap:** Key-value pairs with O(1) lookup time. Essential for caching and quick data retrieval.
+
+## Practical Example: A Simple REST Endpoint
+
+Modern Java is heavily tied to frameworks like Spring Boot. Here is what a simple API endpoint looks like:
+
+\`\`\`java
+@RestController
+@RequestMapping("/api/v1/users")
+public class UserController {
+
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getUser(@PathVariable Long id) {
+        User user = userService.findById(id);
+        return ResponseEntity.ok(user);
+    }
+}
+\`\`\`
+
+## Best Practices
+
+- Always program to an interface, not an implementation.
+- Handle exceptions gracefully. Never swallow them with empty \`catch\` blocks.
+- Avoid deeply nested inheritance.
+- Keep your methods short and focused on a single task.`
+    }
+  
 ];
