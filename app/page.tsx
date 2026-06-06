@@ -188,15 +188,25 @@ export default function Home() {
             opacity: mounted ? 1 : 0, transition: "opacity .5s",
           }}>
             <Link href="/" style={{ display: "flex", alignItems: "center", gap: "0.6rem", textDecoration: "none" }}>
-  <img
-  src="/favicon.png"
-  alt="NilcksonTech"
-  style={{ width: "24px", height: "24px", borderRadius: "4px", objectFit: "cover" }}
-/>
+  <div style={{
+    width: "26px",
+    height: "26px",
+    borderRadius: "5px",
+    overflow: "hidden",
+    flexShrink: 0,
+  }}>
+    <img
+      src="/favicon.png"
+      alt="NilcksonTech"
+      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+    />
+  </div>
   <span style={{
     fontFamily: "'Syne', sans-serif", fontWeight: 900, fontSize: "0.95rem",
     letterSpacing: "0.1em", color: "#00f2fe", textTransform: "uppercase",
-  }}>NilcksonTech</span>
+  }}>
+    NilcksonTech
+  </span>
 </Link>
             <a href="/courses" style={{
               fontSize: "0.8rem", color: "#2d4a5e", textDecoration: "none",
