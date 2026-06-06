@@ -1,4 +1,4 @@
- export default function Systems() {
+export default function Systems() {
   return (
     <>
       <style>{`
@@ -36,48 +36,21 @@
           </p>
         </header>
 
-        {/* The Terminal Card */}
-        <section style={{ padding: '0 5% 4rem', display: 'flex', justifyContent: 'center' }}>
-          <div style={{
-            background: 'linear-gradient(135deg, rgba(30, 27, 75, 0.6), rgba(0, 242, 254, 0.1))',
-            backdropFilter: 'blur(16px)',
-            border: '1px solid rgba(0, 242, 254, 0.3)',
-            borderRadius: '16px',
-            padding: '1.5rem',
-            width: '100%',
-            maxWidth: '550px',
-            boxShadow: '0 15px 35px rgba(0,0,0,0.5), inset 0 0 20px rgba(0, 242, 254, 0.1)'
-          }}>
-            
-            {/* Terminal Header */}
-            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1.5rem' }}>
-              <div style={{ width: '45px', height: '45px', borderRadius: '50%', border: '2px solid #00f2fe', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: '1rem', fontSize: '1.2rem' }}>
-                🤖
-              </div>
-              <div>
-                <div style={{ fontSize: '1.2rem', fontWeight: 'bold', letterSpacing: '2px', color: '#f8fafc' }}>SYSTEM_ADMIN</div>
-                <div style={{ fontSize: '0.75rem', color: '#00f2fe', letterSpacing: '1px', marginTop: '4px' }}>CLEARANCE_LEVEL: MAXIMUM</div>
-              </div>
-            </div>
-
-            {/* Terminal Window */}
-            <div style={{ background: '#020617', borderRadius: '8px', padding: '1.5rem', border: '1px solid rgba(255,255,255,0.05)' }}>
-              <div style={{ color: '#4ade80', fontSize: '0.75rem', marginBottom: '1.5rem', letterSpacing: '1px' }}>
-                ● SYSTEM_STATUS: ACTIVE
-              </div>
-              <div style={{ fontFamily: 'monospace', fontSize: '0.9rem' }}>
-                <span style={{ color: '#00f2fe' }}>root@nilckson:~$</span> <span style={{ color: '#f8fafc' }}>whoami --detailed</span>
-                <br/><br/>
-                <span style={{ color: '#94a3b8', lineHeight: '1.7', display: 'block' }}>
-                  I am a security researcher and digital architect. I bridge the gap between offensive cybersecurity and robust, modern frontend engineering.
-                </span>
-              </div>
-            </div>
-            
+        {/* Services Cards */}
+        <section style={{ padding: '0 5% 6rem', display: 'flex', flexDirection: 'column', gap: '2rem', maxWidth: '800px', margin: '0 auto' }}>
+          
+          <div className="neon-card">
+            <h3 style={{ fontSize: '1.5rem', color: '#00f2fe', marginBottom: '1rem', marginTop: '0' }}>Web Application Development</h3>
+            <p style={{ color: '#cbd5e1', lineHeight: '1.6', margin: '0' }}>Leveraging modern frameworks to deliver responsive, dynamic, and highly secure user experiences.</p>
           </div>
-        </section>
 
+          <div className="neon-card">
+            <h3 style={{ fontSize: '1.5rem', color: '#00f2fe', marginBottom: '1rem', marginTop: '0' }}>Infrastructure & Networking</h3>
+            <p style={{ color: '#cbd5e1', lineHeight: '1.6', margin: '0' }}>Designing distributed systems and secure network topologies to ensure maximum uptime and data integrity.</p>
+          </div>
+
+        </section>
       </main>
     </>
   );
- }
+}
