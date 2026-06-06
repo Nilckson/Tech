@@ -34,10 +34,10 @@ export default function Systems() {
           width: 150vmax;
           height: 150vmax;
           background:
-            radial-gradient(circle at 75% 25%, rgba(220, 38, 38, 0.25) 0%, transparent 50%),  /* Top Right: Red */
-            radial-gradient(circle at 25% 75%, rgba(34, 197, 94, 0.25) 0%, transparent 50%),   /* Bottom Left: Green */
-            radial-gradient(circle at 25% 25%, rgba(168, 85, 247, 0.3) 0%, transparent 50%),   /* Top Left: Purple */
-            radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.15) 0%, transparent 50%); /* Bottom Right: White */
+            radial-gradient(circle at 75% 25%, rgba(220, 38, 38, 0.25) 0%, transparent 50%),  /* Red */
+            radial-gradient(circle at 25% 75%, rgba(34, 197, 94, 0.25) 0%, transparent 50%),   /* Green */
+            radial-gradient(circle at 25% 25%, rgba(168, 85, 247, 0.3) 0%, transparent 50%),   /* Purple */
+            radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.15) 0%, transparent 50%); /* White */
           animation: spin-nebula 25s linear infinite;
         }
 
@@ -63,64 +63,6 @@ export default function Systems() {
           transform: translate(-50%, -50%);
           animation: pulse-core 2s ease-in-out infinite;
         }
-
-        /* --- Dual-Color Cyber Accordion --- */
-        .cyber-card {
-          background: rgba(10, 15, 30, 0.7);
-          backdrop-filter: blur(12px);
-          border-radius: 12px;
-          padding: 2rem;
-          margin-bottom: 2rem;
-          border-left: 2px solid #00f2fe; 
-          border-right: 2px solid #4ade80; 
-          box-shadow: -20px 0 40px -15px rgba(0, 242, 254, 0.3),
-                       20px 0 40px -15px rgba(74, 222, 128, 0.3);
-        }
-        .cyber-title {
-          color: #00f2fe;
-          font-family: monospace;
-          font-size: 1.1rem;
-          letter-spacing: 2px;
-          margin-bottom: 1.5rem;
-          text-transform: uppercase;
-        }
-        details {
-          background: rgba(255, 255, 255, 0.03);
-          border: 1px solid rgba(255, 255, 255, 0.05);
-          border-radius: 8px;
-          margin-bottom: 0.75rem;
-          transition: all 0.3s ease;
-        }
-        summary {
-          padding: 1rem;
-          color: #f8fafc;
-          font-family: monospace;
-          font-size: 1rem;
-          cursor: pointer;
-          list-style: none;
-          display: flex;
-          align-items: center;
-          outline: none;
-        }
-        summary::-webkit-details-marker { display: none; }
-        summary::before {
-          content: '▶';
-          color: #4ade80;
-          margin-right: 12px;
-          font-size: 0.8rem;
-          transition: transform 0.2s ease;
-        }
-        details[open] summary::before {
-          transform: rotate(90deg);
-          color: #00f2fe;
-        }
-        .accordion-content {
-          padding: 0 1rem 1rem 2.5rem;
-          color: #94a3b8;
-          font-family: monospace;
-          font-size: 0.9rem;
-          line-height: 1.6;
-        }
       `}</style>
 
       {/* Deep Space Background */}
@@ -132,6 +74,7 @@ export default function Systems() {
 
       {/* Page Content */}
       <div style={{ position: 'relative', zIndex: 10 }}>
+        
         <nav style={{ padding: '2rem 5%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div style={{ fontSize: '1.5rem', fontWeight: 'bold', letterSpacing: '-0.5px', color: '#fff' }}>
             Nilckson<span style={{ color: '#00f2fe' }}>Tech</span>
@@ -148,31 +91,17 @@ export default function Systems() {
           </p>
         </header>
 
-        <section style={{ padding: '0 5% 6rem', maxWidth: '800px', margin: '0 auto' }}>
+        {/* Original Standard Cards */}
+        <section style={{ padding: '0 5% 6rem', display: 'flex', flexDirection: 'column', gap: '2rem', maxWidth: '800px', margin: '0 auto' }}>
           
-          <div className="cyber-card">
-            <div className="cyber-title">System Capabilities</div>
-            
-            <details>
-              <summary>Web Application Development</summary>
-              <div className="accordion-content">
-                Leveraging modern frameworks to deliver responsive, dynamic, and highly secure user experiences.
-              </div>
-            </details>
+          <div style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(16px)', border: '1px solid rgba(0, 242, 254, 0.3)', borderRadius: '12px', padding: '2.5rem' }}>
+            <h3 style={{ fontSize: '1.5rem', color: '#00f2fe', marginBottom: '1rem', marginTop: '0' }}>Web Application Development</h3>
+            <p style={{ color: '#cbd5e1', lineHeight: '1.6', margin: '0' }}>Leveraging modern frameworks to deliver responsive, dynamic, and highly secure user experiences.</p>
+          </div>
 
-            <details>
-              <summary>Infrastructure & Networking</summary>
-              <div className="accordion-content">
-                Designing distributed systems and secure network topologies to ensure maximum uptime and data integrity.
-              </div>
-            </details>
-
-            <details>
-              <summary>Scalable Cloud Hosting</summary>
-              <div className="accordion-content">
-                Deploying optimized, containerized applications to ensure seamless growth and global availability.
-              </div>
-            </details>
+          <div style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(16px)', border: '1px solid rgba(0, 242, 254, 0.3)', borderRadius: '12px', padding: '2.5rem' }}>
+            <h3 style={{ fontSize: '1.5rem', color: '#00f2fe', marginBottom: '1rem', marginTop: '0' }}>Infrastructure & Networking</h3>
+            <p style={{ color: '#cbd5e1', lineHeight: '1.6', margin: '0' }}>Designing distributed systems and secure network topologies to ensure maximum uptime and data integrity.</p>
           </div>
 
         </section>
