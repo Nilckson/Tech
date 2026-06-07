@@ -25,13 +25,13 @@ export default async function ArticlePage({
         }
         .prose p {
           font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
-          color: #4a6275; line-height: 1.8; margin-bottom: 1rem; font-weight: 300;
+          color: #8fafc7; line-height: 1.8; margin-bottom: 1rem; font-weight: 300;
         }
         .prose strong { color: #8bafc7; font-weight: 500; }
         .prose ul, .prose ol { padding-left: 1.25rem; margin-bottom: 1rem; }
         .prose li {
           font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
-          color: #4a6275; line-height: 1.8; font-weight: 300;
+          color: #8fafc7; line-height: 1.8; font-weight: 300;
         }
         .prose code {
           font-family: monospace; font-size: 0.85rem; color: #00f2fe;
