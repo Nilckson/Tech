@@ -128,7 +128,7 @@ function CourseCard({ course, index }: { course: typeof courses[0]; index: numbe
       </div>
 
       <p style={{
-        fontSize: "0.85rem", color: "#4a6275", lineHeight: 1.7,
+        fontSize: "0.85rem", color: "#8fafc7", lineHeight: 1.7,
         fontFamily: "'DM Sans', sans-serif", marginBottom: "1.25rem",
       }}>
         {course.desc}
@@ -304,7 +304,7 @@ export default function Courses() {
             </h1>
 
             <p className="hero-in d3" style={{
-              fontSize: "clamp(0.9rem, 3vw, 1rem)", color: "#4a6275",
+              fontSize: "clamp(0.9rem, 3vw, 1rem)", color: "#8fafc7",
               maxWidth: "480px", lineHeight: 1.75, fontWeight: 300,
             }}>
               Comprehensive ICT training covering networking, offensive security, full-stack development, database management, and software engineering.
