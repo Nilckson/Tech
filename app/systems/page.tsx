@@ -321,6 +321,7 @@ export default function Systems() {
               ))}
             </div>
           </section>
+          <SocialBar />
 
           <footer style={{
             borderTop: "1px solid rgba(255,255,255,0.05)",
@@ -337,7 +338,7 @@ export default function Systems() {
           </footer>
 
         </div>
-        <SocialBar />
+        
       </main>
     </>
   );
