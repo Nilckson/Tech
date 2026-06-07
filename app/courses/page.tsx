@@ -267,11 +267,11 @@ export default function Courses() {
   </span>
 </Link>
             <Link href="/" style={{
-              fontSize: "0.8rem", color: "#2d4a5e", textDecoration: "none",
+              fontSize: "0.8rem", color: "#6a8fa8", textDecoration: "none",
               fontFamily: "'DM Sans', sans-serif", transition: "color .2s",
             }}
               onMouseEnter={e => (e.currentTarget.style.color = "#00f2fe")}
-              onMouseLeave={e => (e.currentTarget.style.color = "#2d4a5e")}
+              onMouseLeave={e => (e.currentTarget.style.color = "#6a8fa8")}
             >
               ← Home
             </Link>
