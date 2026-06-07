@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+
 
 const products = [
   {
@@ -229,11 +230,13 @@ export default function Storefront() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [selectedProduct, setSelectedProduct] = useState<typeof products[0] | null>(null);
 
-  const addToCart = () => {
-    setCart((prev) => prev + 1);
-    setSelectedProduct(null); // Close modal after adding to cart
-  };
-
+  useEffect(() => {
+    if (selectedProduct) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [selectedProduct]);
   const categories = ["All", ...Array.from(new Set(products.map(p => p.tag)))];
 
   const filteredProducts = products.filter(p => {
@@ -295,17 +298,28 @@ export default function Storefront() {
 
         /* Modal Styles */
         .modal-overlay {
-          position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-          background: rgba(17, 24, 39, 0.6); backdrop-filter: blur(8px);
-          z-index: 100; display: flex; align-items: center; justify-content: center;
-          padding: 1.5rem; animation: fadeIn 0.2s ease;
-        }
+  position: fixed; 
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(17, 24, 39, 0.6); 
+  backdrop-filter: blur(8px);
+  z-index: 100; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  padding: 1.5rem; 
+  overflow-y: auto; /* This allows the modal to scroll if the device is small */
+}
         .modal-content {
-          background: #fff; width: 100%; max-width: 850px;
-          border-radius: 24px; overflow: hidden; display: flex;
-          box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
-          position: relative; animation: slideUp 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-        }
+  background: #fff; 
+  width: 100%; 
+  max-width: 850px;
+  border-radius: 24px; 
+  overflow: hidden; 
+  display: flex;
+  margin: auto; /* Forces centering even if content is long */
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+  position: relative; 
+}
         .modal-split { display: flex; flex-direction: row; width: 100%; }
         .modal-image { width: 45%; display: flex; align-items: center; justify-content: center; padding: 2rem; }
         .modal-info { width: 55%; padding: 3rem 2.5rem; display: flex; flex-direction: column; }
