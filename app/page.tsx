@@ -66,7 +66,7 @@ function ArticleCard({ a, i }: { a: (typeof articles)[0]; i: number }) {
         }}>
           {a.tag}
         </span>
-        <span style={{ fontSize: "0.72rem", color: "#2d4a5e", fontFamily: "'DM Sans', sans-serif" }}>
+        <span style={{ fontSize: "0.72rem", color: "#6a8fa8", fontFamily: "'DM Sans', sans-serif" }}>
           {a.min}
         </span>
       </div>
@@ -212,7 +212,7 @@ export default function Home() {
     fontFamily: "'DM Sans', sans-serif", transition: "color .2s",
   }}
     onMouseEnter={e => (e.currentTarget.style.color = "#00f2fe")}
-    onMouseLeave={e => (e.currentTarget.style.color = "#2d4a5e")}
+    onMouseLeave={e => (e.currentTarget.style.color = "#6a8fa8")}
   >
     Browse courses →
   </a>
