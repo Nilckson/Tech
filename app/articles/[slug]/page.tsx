@@ -69,7 +69,7 @@ export default async function ArticlePage({
   </span>
 </Link>
             <Link href="/" style={{
-              fontSize: "0.8rem", color: "#2d4a5e", textDecoration: "none",
+              fontSize: "0.8rem", color: "#6a8fa8", textDecoration: "none",
               fontFamily: "'DM Sans', sans-serif",
             }}>
               ← Back
@@ -86,7 +86,7 @@ export default async function ArticlePage({
               }}>
                 {article.tag}
               </span>
-              <span style={{ fontSize: "0.72rem", color: "#2d4a5e", fontFamily: "'DM Sans', sans-serif" }}>
+              <span style={{ fontSize: "0.72rem", color: "#6a8fa8", fontFamily: "'DM Sans', sans-serif" }}>
                 {article.date} · {article.min}
               </span>
             </div>
