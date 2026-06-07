@@ -1,5 +1,5 @@
 import { articles } from "../../data/articles";
-import SocialBar from "../../components/SocialIcons.tsx";
+import SocialBar from "../../components/SocialIcons";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
