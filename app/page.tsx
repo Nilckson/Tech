@@ -183,49 +183,40 @@ export default function Home() {
         <div style={{ position: "relative", zIndex: 1, maxWidth: "680px", margin: "0 auto", padding: "0 clamp(1rem,5vw,2rem)" }}>
 
           <nav style={{
-            display: "flex", alignItems: "center", justifyContent: "space-between",
-            padding: "1.5rem 0",
-            opacity: mounted ? 1 : 0, transition: "opacity .5s",
-          }}>
-            <Link href="/" style={{ display: "flex", alignItems: "center", gap: "0.6rem", textDecoration: "none" }}>
-  <div style={{
-    width: "26px",
-    height: "26px",
-    borderRadius: "5px",
-    overflow: "hidden",
-    flexShrink: 0,
-  }}>
-    <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-  <div style={{
-    width: "28px", height: "28px", borderRadius: "6px",
-    background: "linear-gradient(135deg, #00f2fe, #006fff)",
-    display: "flex", alignItems: "center", justifyContent: "center",
-    flexShrink: 0,
-    boxShadow: "0 0 12px rgba(0,242,254,0.4)",
-  }}>
+  display: "flex", alignItems: "center", justifyContent: "space-between",
+  padding: "1.5rem 0",
+  opacity: mounted ? 1 : 0, transition: "opacity .5s",
+}}>
+  <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+    <div style={{
+      width: "28px", height: "28px", borderRadius: "6px",
+      background: "linear-gradient(135deg, #00f2fe, #006fff)",
+      display: "flex", alignItems: "center", justifyContent: "center",
+      flexShrink: 0,
+      boxShadow: "0 0 12px rgba(0,242,254,0.4)",
+    }}>
+      <span style={{
+        fontFamily: "'Syne', sans-serif", fontWeight: 900,
+        fontSize: "0.85rem", color: "#050b14",
+      }}>N</span>
+    </div>
     <span style={{
-      fontFamily: "'Syne', sans-serif", fontWeight: 900,
-      fontSize: "0.85rem", color: "#050b14",
-    }}>N</span>
-  </div>
-  <span style={{
-    fontFamily: "'Syne', sans-serif", fontWeight: 900, fontSize: "0.95rem",
-    letterSpacing: "0.1em", color: "#00f2fe", textTransform: "uppercase",
-  }}>
-    NilcksonTech
-  </span>
-</Link>
-      
-            <a href="/courses" style={{
-              fontSize: "0.8rem", color: "#2d4a5e", textDecoration: "none",
-              fontFamily: "'DM Sans', sans-serif", transition: "color .2s",
-            }}
-              onMouseEnter={e => (e.currentTarget.style.color = "#00f2fe")}
-              onMouseLeave={e => (e.currentTarget.style.color = "#2d4a5e")}
-            >
-              Browse courses →
-            </a>
-          </nav>
+      fontFamily: "'Syne', sans-serif", fontWeight: 900, fontSize: "0.95rem",
+      letterSpacing: "0.1em", color: "#00f2fe", textTransform: "uppercase",
+    }}>
+      NilcksonTech
+    </span>
+  </Link>
+  <a href="/courses" style={{
+    fontSize: "0.8rem", color: "#2d4a5e", textDecoration: "none",
+    fontFamily: "'DM Sans', sans-serif", transition: "color .2s",
+  }}
+    onMouseEnter={e => (e.currentTarget.style.color = "#00f2fe")}
+    onMouseLeave={e => (e.currentTarget.style.color = "#2d4a5e")}
+  >
+    Browse courses →
+  </a>
+</nav>
 
           <section style={{ padding: "3.5rem 0 3rem" }}>
             <div className="hero-in hero-in-1" style={{
