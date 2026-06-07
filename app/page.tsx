@@ -208,7 +208,7 @@ export default function Home() {
     </span>
   </Link>
   <a href="/courses" style={{
-    fontSize: "0.8rem", color: "#2d4a5e", textDecoration: "none",
+    fontSize: "0.8rem", color: "#6a8fa8", textDecoration: "none",
     fontFamily: "'DM Sans', sans-serif", transition: "color .2s",
   }}
     onMouseEnter={e => (e.currentTarget.style.color = "#00f2fe")}
