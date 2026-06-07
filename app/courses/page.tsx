@@ -351,9 +351,9 @@ export default function Courses() {
           }}>
             <span style={{
               fontFamily: "'Syne', sans-serif", fontWeight: 800, fontSize: "0.8rem",
-              letterSpacing: "0.1em", color: "#162535", textTransform: "uppercase",
+              letterSpacing: "0.1em", color: "#4a6880", textTransform: "uppercase",
             }}>NilcksonTech</span>
-            <span style={{ fontSize: "0.72rem", color: "#162535", fontFamily: "'DM Sans', sans-serif" }}>
+            <span style={{ fontSize: "0.72rem", color: "#4a6880", fontFamily: "'DM Sans', sans-serif" }}>
               © {new Date().getFullYear()} · All rights reserved
             </span>
           </footer>
