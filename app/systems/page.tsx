@@ -337,6 +337,7 @@ export default function Systems() {
           </footer>
 
         </div>
+        <SocialBar />
       </main>
     </>
   );
