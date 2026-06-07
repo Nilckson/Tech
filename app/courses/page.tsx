@@ -246,12 +246,25 @@ export default function Courses() {
             padding: "1.5rem 0",
             opacity: mounted ? 1 : 0, transition: "opacity .5s",
           }}>
-            <Link href="/" style={{ display: "flex", alignItems: "center", gap: "0.6rem", textDecoration: "none" }}>
-  <img src="/favicon.png"  style={{ width: "28px", height: "28px", borderRadius: "6px" }} />
+            <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+  <div style={{
+    width: "28px", height: "28px", borderRadius: "6px",
+    background: "linear-gradient(135deg, #00f2fe, #006fff)",
+    display: "flex", alignItems: "center", justifyContent: "center",
+    flexShrink: 0,
+    boxShadow: "0 0 12px rgba(0,242,254,0.4)",
+  }}>
+    <span style={{
+      fontFamily: "'Syne', sans-serif", fontWeight: 900,
+      fontSize: "0.85rem", color: "#050b14",
+    }}>N</span>
+  </div>
   <span style={{
     fontFamily: "'Syne', sans-serif", fontWeight: 900, fontSize: "0.95rem",
     letterSpacing: "0.1em", color: "#00f2fe", textTransform: "uppercase",
-  }}>NilcksonTech</span>
+  }}>
+    NilcksonTech
+  </span>
 </Link>
             <Link href="/" style={{
               fontSize: "0.8rem", color: "#2d4a5e", textDecoration: "none",
