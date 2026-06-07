@@ -195,10 +195,18 @@ export default function Home() {
     overflow: "hidden",
     flexShrink: 0,
   }}>
-    <img
-      src="/favicon.png"
-      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-    />
+    <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+  <div style={{
+    width: "28px", height: "28px", borderRadius: "6px",
+    background: "linear-gradient(135deg, #00f2fe, #006fff)",
+    display: "flex", alignItems: "center", justifyContent: "center",
+    flexShrink: 0,
+    boxShadow: "0 0 12px rgba(0,242,254,0.4)",
+  }}>
+    <span style={{
+      fontFamily: "'Syne', sans-serif", fontWeight: 900,
+      fontSize: "0.85rem", color: "#050b14",
+    }}>N</span>
   </div>
   <span style={{
     fontFamily: "'Syne', sans-serif", fontWeight: 900, fontSize: "0.95rem",
@@ -207,6 +215,7 @@ export default function Home() {
     NilcksonTech
   </span>
 </Link>
+      
             <a href="/courses" style={{
               fontSize: "0.8rem", color: "#2d4a5e", textDecoration: "none",
               fontFamily: "'DM Sans', sans-serif", transition: "color .2s",
