@@ -291,7 +291,7 @@ export default function Systems() {
     <span style={{ fontSize: "0.8rem" }}>◎</span>
     Read Architecture Guide
   </Link>
-
+</div>
 </div>
 
           <section style={{ marginBottom: "5rem" }}>
@@ -317,8 +317,7 @@ export default function Systems() {
               © {new Date().getFullYear()} · All rights reserved
             </span>
           </footer>
-</div>
-        </div>
+          </div>
       </main>
     </>
   );
