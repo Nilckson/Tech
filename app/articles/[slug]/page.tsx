@@ -114,6 +114,7 @@ export default async function ArticlePage({
               margin: "2rem 0",
             }} />
           </header>
+          <SocialBar />
 
           <article className="prose" style={{ paddingBottom: "5rem" }}>
             {lines.map((line, i) => {
@@ -147,7 +148,7 @@ export default async function ArticlePage({
           </article>
 
         </div>
-        <SocialBar />
+        
       </main>
     </>
   );
