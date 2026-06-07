@@ -342,6 +342,7 @@ export default function Courses() {
               <CourseCard key={course.id} course={course} index={i} />
             ))}
           </section>
+          <SocialBar />
 
           <footer style={{
             borderTop: "1px solid rgba(255,255,255,0.05)",
