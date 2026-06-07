@@ -1,5 +1,5 @@
 "use client";
-import SocialBar from "../components/SocialBar";
+import SocialBar from "./components/SocialBar";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
