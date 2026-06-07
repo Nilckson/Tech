@@ -9,7 +9,7 @@ const products = [
     name: "Zero Trust Premium Hoodie",
     price: 45.00,
     tag: "Apparel",
-    gradient: "linear-gradient(135deg, #FF9A9E 0%, #FECFEF 100%)",
+    gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)", // Cyber Violet
     desc: "Heavyweight cotton. 'Never Trust, Always Verify' embroidered on the sleeve."
   },
   {
@@ -17,7 +17,7 @@ const products = [
     name: "Localhost 127.0.0.1 Tee",
     price: 25.00,
     tag: "Best Seller",
-    gradient: "linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)",
+    gradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)", // Cyan
     desc: "Ultra-soft breathable fabric for deep work."
   },
   {
@@ -25,7 +25,7 @@ const products = [
     name: "Sysadmin Tears Coffee Mug",
     price: 15.00,
     tag: "Accessories",
-    gradient: "linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%)",
+    gradient: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)", // Neon Teal
     desc: "Premium ceramic. Essential for late-night debugging sessions."
   },
   {
@@ -33,8 +33,88 @@ const products = [
     name: "Root Access Snapback",
     price: 28.00,
     tag: "Headwear",
-    gradient: "linear-gradient(135deg, #fccb90 0%, #d57eeb 100%)",
+    gradient: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)", // Sunset Orange
     desc: "Minimalist root hash symbol embroidered. Adjustable fit."
+  },
+  {
+    id: "mat-01",
+    name: "OSI Model Desk Mat",
+    price: 35.00,
+    tag: "Workspace",
+    gradient: "linear-gradient(135deg, #30cfd0 0%, #330867 100%)", // Dark Slate
+    desc: "Extra large, anti-fray mechanical keyboard mat with a subtle OSI model diagram."
+  },
+  {
+    id: "beanie-01",
+    name: "Sudo Beanie",
+    price: 22.00,
+    tag: "Headwear",
+    gradient: "linear-gradient(135deg, #f6d365 0%, #fda085 100%)", // Warm Orange
+    desc: "Warm knit beanie. Because sometimes you just need to force things to work."
+  },
+  {
+    id: "flask-01",
+    name: "Encrypted Thermos",
+    price: 30.00,
+    tag: "Drinkware",
+    gradient: "linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%)", // Ice Blue
+    desc: "Matte black stainless steel. Keeps your coffee hot for 12 hours."
+  },
+  {
+    id: "bag-01",
+    name: "Faraday Tech Backpack",
+    price: 85.00,
+    tag: "Gear",
+    gradient: "linear-gradient(135deg, #c471f5 0%, #fa71cd 100%)", // Neon Purple
+    desc: "Waterproof exterior with an RFID-blocking interior pocket for your hardware."
+  },
+  {
+    id: "stickers-01",
+    name: "Terminal Sticker Pack",
+    price: 12.00,
+    tag: "Accessories",
+    gradient: "linear-gradient(135deg, #0ba360 0%, #3cba92 100%)", // Hacker Green
+    desc: "15 high-quality vinyl stickers. Bash commands, Linux penguins, and code snippets."
+  },
+  {
+    id: "lanyard-01",
+    name: "USB/YubiKey Leather Lanyard",
+    price: 18.00,
+    tag: "Accessories",
+    gradient: "linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%)", // Silver
+    desc: "Premium leather strap with a quick-release metal clasp for your security keys."
+  },
+  {
+    id: "windbreaker-01",
+    name: "Packet Sniffer Windbreaker",
+    price: 65.00,
+    tag: "Apparel",
+    gradient: "linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)", // Deep Ocean
+    desc: "Lightweight, water-resistant jacket with a sleek, reflective digital camo pattern."
+  },
+    {
+    id: "hoodie-02",
+    name: "SysAdmin Zip-Up Hoodie",
+    price: 55.00,
+    tag: "Apparel",
+    gradient: "linear-gradient(135deg, #2b5876 0%, #4e4376 100%)", // Midnight Blue
+    desc: "Premium fleece zip-up. Features a subtle embroidered terminal prompt on the chest."
+  },
+  {
+    id: "mat-02",
+    name: "Dark Mode Topo Desk Mat",
+    price: 38.00,
+    tag: "Workspace",
+    gradient: "linear-gradient(135deg, #434343 0%, #000000 100%)", // Carbon Black
+    desc: "Ultra-smooth glide surface featuring a sleek, dark-grey topographic map design."
+  },
+  {
+    id: "hoodie-03",
+    name: "Linux Core Heavy Hoodie",
+    price: 50.00,
+    tag: "Apparel",
+    gradient: "linear-gradient(135deg, #0ba360 0%, #3cba92 100%)", // Mint/Green
+    desc: "Oversized street fit. Designed for ultimate comfort during long development sessions."
   }
 ];
 
@@ -55,9 +135,10 @@ export default function Storefront() {
         .multi-color-bg {
           position: absolute;
           top: 0; left: 0; right: 0; height: 500px;
-          background: radial-gradient(circle at 15% 50%, rgba(255, 154, 158, 0.15), transparent 25%),
-                      radial-gradient(circle at 85% 30%, rgba(161, 140, 209, 0.15), transparent 25%),
-                      radial-gradient(circle at 50% 80%, rgba(132, 250, 176, 0.15), transparent 25%);
+          /* Swapped pink for cyber violet and cyan */
+          background: radial-gradient(circle at 15% 50%, rgba(102, 126, 234, 0.15), transparent 25%),
+                      radial-gradient(circle at 85% 30%, rgba(79, 172, 254, 0.15), transparent 25%),
+                      radial-gradient(circle at 50% 80%, rgba(67, 233, 123, 0.15), transparent 25%);
           z-index: 0;
           pointer-events: none;
         }
@@ -113,18 +194,16 @@ export default function Storefront() {
         
         <div style={{ position: "relative", zIndex: 1, maxWidth: "1200px", margin: "0 auto", padding: "0 clamp(1.5rem, 5vw, 3rem)" }}>
           
-          {/* Store Navigation */}
           <nav style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "2rem 0" }}>
             <Link href="/" style={{ textDecoration: "none" }}>
               <span style={{ fontFamily: '"Outfit", sans-serif', fontWeight: 800, fontSize: "1.2rem", letterSpacing: "-0.02em", color: "#111827" }}>
-                Nilckson<span style={{ color: "#a18cd1" }}>Store.</span>
+                Nilckson<span style={{ color: "#667eea" }}>Store.</span>
               </span>
             </Link>
             
             <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
               <button className="btn-login">Login</button>
               
-              {/* Cart Icon with Badge */}
               <div style={{ position: "relative", cursor: "pointer", padding: "0.5rem" }}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111827" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <circle cx="9" cy="21" r="1"></circle>
@@ -140,23 +219,20 @@ export default function Storefront() {
             </div>
           </nav>
 
-          {/* Hero Section */}
           <header style={{ padding: "4rem 0", textAlign: "center" }}>
-            <span style={{ display: "inline-block", background: "linear-gradient(135deg, #FF9A9E 0%, #FECFEF 100%)", padding: "0.4rem 1rem", borderRadius: "100px", fontSize: "0.85rem", fontWeight: 600, color: "#991b1b", fontFamily: '"Plus Jakarta Sans", sans-serif', marginBottom: "1.5rem" }}>
+            <span style={{ display: "inline-block", background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)", padding: "0.4rem 1rem", borderRadius: "100px", fontSize: "0.85rem", fontWeight: 600, color: "#fff", fontFamily: '"Plus Jakarta Sans", sans-serif', marginBottom: "1.5rem" }}>
               Premium Collection
             </span>
             <h1 style={{ fontFamily: '"Outfit", sans-serif', fontWeight: 800, fontSize: "clamp(2.5rem, 8vw, 4.5rem)", lineHeight: 1.1, letterSpacing: "-0.03em", marginBottom: "1rem" }}>
               Upgrade Your <br />
-              <span style={{ background: "linear-gradient(to right, #a18cd1 0%, #fbc2eb 100%)", WebkitBackgroundClip: "text", color: "transparent" }}>Hardware.</span>
+              <span style={{ background: "linear-gradient(to right, #667eea 0%, #4facfe 100%)", WebkitBackgroundClip: "text", color: "transparent" }}>Hardware.</span>
             </h1>
           </header>
 
-          {/* Product Grid */}
           <section style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "2rem", paddingBottom: "6rem" }}>
             {products.map((p) => (
               <div key={p.id} className="store-card">
                 
-                {/* Premium Image Placeholder */}
                 <div style={{ width: "100%", height: "240px", borderRadius: "14px", background: p.gradient, marginBottom: "1.5rem", display: "flex", alignItems: "center", justifyContent: "center" }}>
                   <span style={{ fontFamily: '"Outfit", sans-serif', fontWeight: 800, color: "rgba(255,255,255,0.7)", fontSize: "1.5rem", mixBlendMode: "overlay" }}>
                     {p.name.split(" ")[0]}
@@ -187,7 +263,6 @@ export default function Storefront() {
             ))}
           </section>
 
-          {/* Footer */}
           <footer style={{ borderTop: "1px solid #e5e7eb", padding: "2rem 0", display: "flex", justifyContent: "space-between", alignItems: "center", fontFamily: '"Plus Jakarta Sans", sans-serif', fontSize: "0.85rem", color: "#6b7280" }}>
             <span style={{ fontWeight: 600, color: "#111827" }}>NILCKSON STORE</span>
             <span>© {new Date().getFullYear()}</span>
