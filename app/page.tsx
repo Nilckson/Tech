@@ -78,7 +78,7 @@ function ArticleCard({ a, i }: { a: (typeof articles)[0]; i: number }) {
         {a.title}
       </h3>
       <p style={{
-        fontSize: "0.83rem", color: "#4a6275", lineHeight: 1.65,
+        fontSize: "0.83rem", color: "#8fafc7", lineHeight: 1.65,
         fontFamily: "'DM Sans', sans-serif", margin: 0,
       }}>
         {a.excerpt}
@@ -119,7 +119,7 @@ function ServicePill({ s }: { s: (typeof services)[0] }) {
         }}>
           {s.label}
         </div>
-        <div style={{ fontSize: "0.72rem", color: "#3a5468", fontFamily: "'DM Sans', sans-serif" }}>
+        <div style={{ fontSize: "0.72rem", color: "#7a9db5", fontFamily: "'DM Sans', sans-serif" }}>
           {s.sub}
         </div>
       </div>
