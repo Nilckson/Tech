@@ -9,7 +9,7 @@ const services = [
   { href: "/systems", icon: "⬡", accent: "#00f2fe", label: "Systems", sub: "Architecture & deployment" },
   { href: "/security", icon: "◈", accent: "#a78bfa", label: "Security", sub: "Threat hunting & defense" },
   { href: "/courses", icon: "◉", accent: "#34d399", label: "Courses", sub: "Learn at your own pace" },
-  { href: null, icon: "◆", accent: "#fb923c", label: "Merch", sub: "Tech-inspired gear" },
+  { href: "/merch", icon: "◆", accent: "#fb923c", label: "Merch", sub: "Tech-inspired gear" },
 ];
 
 function useInView(threshold = 0.15) {
