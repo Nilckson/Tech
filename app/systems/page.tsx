@@ -232,67 +232,62 @@ export default function Systems() {
             }}>
               We design, build, and deploy high-performance web applications and resilient network infrastructures tailored for scale.
             </p>
+<div className="hero-in d3" style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
+  
+  {/* Primary — animated glow ring */}
+  <div style={{ position: "relative", display: "inline-flex" }}>
+    <div style={{
+      position: "absolute", inset: "-2px",
+      borderRadius: "100px",
+      background: "linear-gradient(135deg, #00f2fe, #006fff, #a78bfa, #00f2fe)",
+      backgroundSize: "300% 300%",
+      animation: "borderSpin 3s linear infinite",
+      zIndex: 0,
+    }} />
+    <a href="mailto:your@email.com" style={{
+      position: "relative", zIndex: 1,
+      display: "inline-flex", alignItems: "center", gap: "0.5rem",
+      padding: "0.8rem 1.75rem",
+      background: "#050b14",
+      borderRadius: "100px", color: "#00f2fe", fontWeight: 700,
+      fontSize: "0.85rem", textDecoration: "none",
+      letterSpacing: "0.03em", fontFamily: "'Syne', sans-serif",
+      transition: "color .2s",
+    }}
+      onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
+      onMouseLeave={e => (e.currentTarget.style.color = "#00f2fe")}
+    >
+      ✉ Request a Build
+    </a>
+  </div>
 
-            <div className="hero-in d3" style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
-              <Link href="/courses" style={{
-                display: "inline-flex", alignItems: "center", gap: "0.4rem",
-                padding: "0.8rem 1.75rem",
-                background: "linear-gradient(135deg, #00f2fe, #006fff)",
-                borderRadius: "100px", color: "#fff", fontWeight: 700,
-                fontSize: "0.85rem", textDecoration: "none",
-                letterSpacing: "0.03em", fontFamily: "'Syne', sans-serif",
-                boxShadow: "0 0 28px rgba(0,242,254,0.22), 0 4px 16px rgba(0,0,0,0.4)",
-                transition: "transform .2s, box-shadow .2s",
-              }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.transform = "translateY(-2px)";
-                  e.currentTarget.style.boxShadow = "0 0 44px rgba(0,242,254,0.38), 0 8px 24px rgba(0,0,0,0.5)";
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.transform = "translateY(0)";
-                  e.currentTarget.style.boxShadow = "0 0 28px rgba(0,242,254,0.22), 0 4px 16px rgba(0,0,0,0.4)";
-                }}
-              >
-                View Courses →
-              </Link>
-              <Link href="/security" style={{
-                display: "inline-flex", alignItems: "center",
-                padding: "0.8rem 1.75rem",
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.09)",
-                borderRadius: "100px", color: "#6a8090",
-                fontWeight: 500, fontSize: "0.85rem", textDecoration: "none",
-                transition: "all .2s", fontFamily: "'DM Sans', sans-serif",
-              }}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.22)"; e.currentTarget.style.color = "#fff"; }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.09)"; e.currentTarget.style.color = "#6a8090"; }}
-              >
-                Security Services
-              </Link>
-            </div>
-          </header>
+  {/* Secondary — shimmer on hover */}
+  <Link href="/articles/zero-trust-networks" style={{
+    display: "inline-flex", alignItems: "center", gap: "0.4rem",
+    padding: "0.8rem 1.75rem",
+    background: "rgba(255,255,255,0.04)",
+    border: "1px solid rgba(255,255,255,0.09)",
+    borderRadius: "100px", color: "#6a8090",
+    fontWeight: 500, fontSize: "0.85rem", textDecoration: "none",
+    transition: "all .3s", fontFamily: "'DM Sans', sans-serif",
+    position: "relative", overflow: "hidden",
+  }}
+    onMouseEnter={e => {
+      e.currentTarget.style.borderColor = "rgba(0,242,254,0.35)";
+      e.currentTarget.style.color = "#00f2fe";
+      e.currentTarget.style.background = "rgba(0,242,254,0.06)";
+    }}
+    onMouseLeave={e => {
+      e.currentTarget.style.borderColor = "rgba(255,255,255,0.09)";
+      e.currentTarget.style.color = "#6a8090";
+      e.currentTarget.style.background = "rgba(255,255,255,0.04)";
+    }}
+  >
+    <span style={{ fontSize: "0.8rem" }}>◎</span>
+    Read Architecture Guide
+  </Link>
 
-          <div style={{ height: "1px", background: "linear-gradient(90deg,transparent,rgba(0,242,254,0.15),transparent)", margin: "0 0 2.5rem" }} />
-
-          <div style={{
-            display: "grid", gridTemplateColumns: "repeat(3,1fr)",
-            gap: "1px", background: "rgba(255,255,255,0.06)",
-            borderRadius: "12px", overflow: "hidden", marginBottom: "2.5rem",
-          }}>
-            {stats.map(stat => (
-              <div key={stat.label} style={{ background: "#050b14", padding: "1rem", textAlign: "center" }}>
-                <div style={{
-                  fontFamily: "'Syne', sans-serif", fontWeight: 800,
-                  fontSize: "1.3rem", color: "#e8f4ff", marginBottom: "0.2rem",
-                }}>
-                  {stat.val}
-                </div>
-                <div style={{ fontSize: "0.7rem", color: "#4a7a96", letterSpacing: "0.08em", textTransform: "uppercase" }}>
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
+</div>
 
           <section style={{ marginBottom: "5rem" }}>
             <p style={{
