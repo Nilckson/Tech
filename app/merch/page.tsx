@@ -416,12 +416,18 @@ export default function Storefront() {
 
           <section style={{ display: "flex", flexDirection: "column", gap: "1.5rem", alignItems: "center", marginBottom: "3rem" }}>
             <input 
-              type="text" 
-              placeholder="Search gear, hardware, or apparel..." 
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="search-input"
-            />
+  type="text" 
+  placeholder="Search gear, hardware, or apparel..." 
+  value={searchQuery}
+  onChange={(e) => setSearchQuery(e.target.value)}
+  onKeyDown={(e) => {
+    if (e.key === 'Enter') {
+      (e.target as HTMLInputElement).blur();
+    }
+  }}
+  className="search-input"
+/>
+
             
             <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", justifyContent: "center" }}>
               {categories.map(cat => (
