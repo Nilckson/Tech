@@ -147,6 +147,7 @@ export default async function ArticlePage({
           </article>
 
         </div>
+        <SocialBar />
       </main>
     </>
   );
