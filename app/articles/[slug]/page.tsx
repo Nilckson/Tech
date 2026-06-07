@@ -1,4 +1,5 @@
 import { articles } from "../../data/articles";
+import SocialBar from "../../components/SocialBar";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
