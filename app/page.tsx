@@ -286,7 +286,7 @@ export default function Home() {
 
           <section style={{ marginBottom: "3.5rem" }}>
             <p style={{
-              fontSize: "0.68rem", letterSpacing: "0.18em", color: "#1e3a50",
+              fontSize: "0.68rem", letterSpacing: "0.18em", color: "#4a7a96",
               textTransform: "uppercase", fontWeight: 600, marginBottom: "1rem",
             }}>What we do</p>
             <div className="services-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: "0.65rem" }}>
@@ -297,7 +297,7 @@ export default function Home() {
           <section style={{ marginBottom: "5rem" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "1.25rem" }}>
               <p style={{
-                fontSize: "0.68rem", letterSpacing: "0.18em", color: "#1e3a50",
+                fontSize: "0.68rem", letterSpacing: "0.18em", color: "#4a7a96",
                 textTransform: "uppercase", fontWeight: 600,
               }}>Latest articles</p>
               <a href="/articles" style={{
