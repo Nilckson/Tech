@@ -315,7 +315,7 @@ export default function Home() {
               {articles.map((a, i) => <ArticleCard key={a.slug} a={a} i={i} />)}
             </div>
           </section>
-
+<SocialBar />
           <footer style={{
             borderTop: "1px solid rgba(255,255,255,0.05)",
             padding: "1.75rem 0 2.5rem",
@@ -329,10 +329,11 @@ export default function Home() {
             <span style={{ fontSize: "0.72rem", color: "#4a6880", fontFamily: "'DM Sans', sans-serif" }}>
               © {new Date().getFullYear()} · All rights reserved
             </span>
+            
           </footer>
 
         </div>
-        <SocialBar />
+        
       </main>
     </>
   );
