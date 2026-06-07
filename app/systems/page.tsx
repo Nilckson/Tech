@@ -145,21 +145,26 @@ export default function Systems() {
   return (
     <>
       <style>{`
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: #050b14; }
-        @keyframes fadeUp {
-          from { opacity:0; transform:translateY(24px); }
-          to   { opacity:1; transform:translateY(0); }
-        }
-        @keyframes pulse {
-          0%,100% { opacity:.5; transform:scale(1); }
-          50%      { opacity:1; transform:scale(1.15); }
-        }
-        .hero-in { animation: fadeUp .6s ease both; }
-        .d1 { animation-delay:.05s; }
-        .d2 { animation-delay:.15s; }
-        .d3 { animation-delay:.25s; }
-      `}</style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #050b14; }
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(24px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  @keyframes pulse {
+    0%,100% { opacity:.5; transform:scale(1); }
+    50%      { opacity:1; transform:scale(1.15); }
+  }
+  @keyframes borderSpin {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  .hero-in { animation: fadeUp .6s ease both; }
+  .d1 { animation-delay:.05s; }
+  .d2 { animation-delay:.15s; }
+  .d3 { animation-delay:.25s; }
+`}</style>
 
       <main style={{
         minHeight: "100vh", background: "#050b14",
