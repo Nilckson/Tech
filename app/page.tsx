@@ -9,8 +9,8 @@ import { articles } from "./data/articles";
 const services = [
   { href: "/systems",  icon: "⬡", accent: "#22d3ee", label: "Infrastructure", sub: "Network architecture & deployment" },
   { href: "/security", icon: "◈", accent: "#a78bfa", label: "Security",       sub: "Offensive security & threat auditing" },
-  { href: "/courses",  icon: "◉", accent: "#34d399", label: "Education",      sub: "Technical courses & resources" },
-  { href: "/merch",    icon: "◆", accent: "#fbbf24", label: "Hardware",       sub: "Premium tech gear & apparel" },
+  { href: "/courses",  icon: "◉", accent: "#34d399", label: "Learn",          sub: "Technical courses & resources" },
+  { href: "/merch",    icon: "◆", accent: "#fbbf24", label: "Merchandise",    sub: "Premium tech gear & apparel" },
 ];
 
 function Aurora() {
@@ -240,11 +240,20 @@ export default function Home() {
         .nav-link:hover { color: #fff; }
         .section-eyebrow { font-size: 0.7rem; letter-spacing: 0.15em; color: #52525b; text-transform: uppercase; font-weight: 700; margin-bottom: 0.5rem; font-family: 'Space Grotesk', sans-serif; }
         .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+        html { scroll-behavior: smooth; }
         @media (max-width: 768px) { .services-grid { grid-template-columns: 1fr; } }
       `}</style>
 
-      {/* Deep Space Backgrounds */}
-      <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 130% 80% at 50% -5%, #0d1420 0%, #04050a 65%)", zIndex: 0 }} />
+      {/* Layer 1: Deep Tech Image Background */}
+      <div style={{
+        position: "absolute", inset: 0, zIndex: 0,
+        backgroundImage: "url('https://images.unsplash.com/photo-1614064641913-6b17cac80236?q=80&w=2532&auto=format&fit=crop')",
+        backgroundSize: "cover", backgroundPosition: "center",
+        opacity: 0.06, mixBlendMode: "screen", pointerEvents: "none"
+      }} />
+
+      {/* Layer 2: Aurora & Gradients */}
+      <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 130% 80% at 50% -5%, rgba(13,20,32,0.8) 0%, rgba(4,5,10,0.95) 65%)", zIndex: 0 }} />
       <div style={{ position: "absolute", inset: 0, zIndex: 1 }}><Aurora /></div>
       <div style={{ position: "absolute", inset: 0, zIndex: 2, pointerEvents: "none", backgroundImage: "linear-gradient(rgba(255,255,255,0.016) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.016) 1px,transparent 1px)", backgroundSize: "52px 52px", maskImage: "radial-gradient(ellipse 100% 70% at 50% 0%, black 20%, transparent 100%)" }} />
 
@@ -286,7 +295,7 @@ export default function Home() {
 
           <div className="fade-up d4 cta-row" style={{ display: "flex", gap: "0.85rem", flexWrap: "wrap", alignItems: "center" }}>
             <a href="/systems" className="btn-primary">View Infrastructure</a>
-            <a href="/articles" className="btn-ghost">Access Intel</a>
+            <a href="#intel" className="btn-ghost">Access Intel</a>
           </div>
         </section>
 
@@ -302,7 +311,7 @@ export default function Home() {
         </section>
 
         {/* Articles */}
-        <section style={{ marginBottom: "6rem" }}>
+        <section id="intel" style={{ marginBottom: "6rem", paddingTop: "2rem" }}>
           <p className="section-eyebrow">Intelligence feed</p>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "1rem" }}>
             <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1.3rem, 3vw, 1.6rem)", fontWeight: 700, color: "#fff", letterSpacing: "-0.02em" }}>Security & Systems Log</h2>
@@ -334,5 +343,5 @@ export default function Home() {
       </div>
     </main>
   );
-                                   }
-                      
+      }
+        
