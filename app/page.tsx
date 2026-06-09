@@ -1,332 +1,190 @@
-"use client";
+import { useState, useEffect, useRef } from "react";
 
-import SocialBar from "./components/SocialIcons";
-import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
-import { articles } from "./data/articles";
-
-const services = [
-  { href: "/systems",  icon: "⬡", accent: "#22d3ee", label: "Systems",  sub: "Architecture & deployment" },
-  { href: "/security", icon: "◈", accent: "#a78bfa", label: "Security", sub: "Threat hunting & defense"  },
-  { href: "/courses",  icon: "◉", accent: "#34d399", label: "Courses",  sub: "Learn at your own pace"    },
-  { href: "/merch",    icon: "◆", accent: "#fbbf24", label: "Merch",    sub: "Tech-inspired gear"        },
-];
-
-function useInView(threshold = 0.12) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+function Aurora() {
+  const canvasRef = useRef(null);
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setVisible(true); obs.disconnect(); } },
-      { threshold }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [threshold]);
-  return { ref, visible };
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+    let raf, t = 0;
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+    const W = canvas.width, H = canvas.height;
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+
+      const bands = [
+        { y: H * 0.3,  color1: "rgba(56,189,248,0.18)",  color2: "rgba(99,102,241,0.12)",  speed: 0.008, amp: 60, freq: 2.1 },
+        { y: H * 0.45, color1: "rgba(139,92,246,0.15)",  color2: "rgba(34,211,238,0.1)",   speed: 0.011, amp: 45, freq: 1.7 },
+        { y: H * 0.25, color1: "rgba(34,211,238,0.1)",   color2: "rgba(167,139,250,0.08)", speed: 0.006, amp: 70, freq: 2.8 },
+        { y: H * 0.55, color1: "rgba(99,102,241,0.08)",  color2: "rgba(56,189,248,0.06)",  speed: 0.014, amp: 35, freq: 1.4 },
+      ];
+
+      bands.forEach(b => {
+        ctx.beginPath();
+        const steps = 200;
+        for (let i = 0; i <= steps; i++) {
+          const x = (i / steps) * W;
+          const y = b.y + Math.sin(i * 0.03 * b.freq + t * b.speed) * b.amp + Math.sin(i * 0.05 * b.freq - t * b.speed * 1.3) * (b.amp * 0.4);
+          i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        }
+        for (let i = steps; i >= 0; i--) {
+          const x = (i / steps) * W;
+          const y = b.y + Math.sin(i * 0.03 * b.freq + t * b.speed) * b.amp + Math.sin(i * 0.05 * b.freq - t * b.speed * 1.3) * (b.amp * 0.4) + 80;
+          ctx.lineTo(x, y);
+        }
+        ctx.closePath();
+        const grad = ctx.createLinearGradient(0, b.y - b.amp, 0, b.y + b.amp + 80);
+        grad.addColorStop(0, "transparent");
+        grad.addColorStop(0.3, b.color1);
+        grad.addColorStop(0.7, b.color2);
+        grad.addColorStop(1, "transparent");
+        ctx.fillStyle = grad;
+        ctx.fill();
+      });
+
+      if (!ctx._stars) {
+        ctx._stars = Array.from({ length: 140 }, () => ({
+          x: Math.random() * W, y: Math.random() * H * 0.75,
+          r: Math.random() * 1.3 + 0.2, phase: Math.random() * Math.PI * 2,
+        }));
+      }
+      ctx._stars.forEach(s => {
+        const alpha = 0.2 + Math.sin(t * 0.018 + s.phase) * 0.2;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+        ctx.fill();
+      });
+
+      t++;
+      raf = requestAnimationFrame(draw);
+    }
+    draw();
+    return () => cancelAnimationFrame(raf);
+  }, []);
+  return <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }} />;
 }
 
-function ArticleCard({ a, i }: { a: (typeof articles)[0]; i: number }) {
-  const [hov, setHov] = useState(false);
-  const { ref, visible } = useInView();
-  const router = useRouter();
+export default function HeroPreview() {
+  const [hov1, setHov1] = useState(false);
+  const [hov2, setHov2] = useState(false);
 
   return (
-    <div
-      ref={ref}
-      role="button"
-      tabIndex={0}
-      onClick={() => router.push(`/articles/${a.slug}`)}
-      onKeyDown={(e) => e.key === "Enter" && router.push(`/articles/${a.slug}`)}
-      onMouseEnter={() => setHov(true)}
-      onMouseLeave={() => setHov(false)}
-      style={{
-        position: "relative",
-        background: hov ? "rgba(255,255,255,0.025)" : "transparent",
-        borderBottom: "1px solid rgba(255,255,255,0.06)",
-        padding: "1.75rem 1.25rem",
-        cursor: "pointer",
-        transition: "all 0.35s cubic-bezier(0.23,1,0.32,1)",
-        transform: visible ? (hov ? "translateX(10px)" : "translateX(0)") : "translateY(24px)",
-        opacity: visible ? 1 : 0,
-        transitionDelay: visible ? `${i * 0.08}s` : "0s",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        gap: "1rem",
-        borderRadius: "4px",
-        outline: "none",
-      }}
-    >
+    <div style={{ background: "#04050a", minHeight: "100vh", overflow: "hidden", position: "relative" }}>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500&display=swap');
+        @keyframes fadeUp {
+          from { opacity: 0; transform: translateY(32px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulseDot {
+          0%,100% { opacity:1; box-shadow: 0 0 6px #22d3ee; }
+          50%      { opacity:0.5; box-shadow: 0 0 16px #22d3ee; }
+        }
+        .fu1{animation:fadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.1s both;}
+        .fu2{animation:fadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.25s both;}
+        .fu3{animation:fadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.4s both;}
+        .fu4{animation:fadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.55s both;}
+        .fu5{animation:fadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.7s both;}
+        .nav-a{font-size:0.82rem;color:#52525b;text-decoration:none;font-family:'DM Sans',sans-serif;font-weight:500;transition:color 0.2s;}
+        .nav-a:hover{color:#e4e4e7;}
+      `}</style>
+
+      {/* Deep space base */}
+      <div style={{ position:"absolute", inset:0, background:"radial-gradient(ellipse 130% 80% at 50% -5%, #0d1420 0%, #04050a 65%)" }} />
+
+      {/* Aurora */}
+      <div style={{ position:"absolute", inset:0 }}><Aurora /></div>
+
+      {/* Grid */}
       <div style={{
-        position: "absolute", left: 0, top: "50%",
-        transform: hov ? "translateY(-50%) scaleY(1)" : "translateY(-50%) scaleY(0)",
-        width: "2px", height: "60%", background: a.tagColor,
-        borderRadius: "2px", transition: "transform 0.3s cubic-bezier(0.23,1,0.32,1)",
-        transformOrigin: "center",
+        position:"absolute", inset:0, pointerEvents:"none",
+        backgroundImage:"linear-gradient(rgba(255,255,255,0.016) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.016) 1px,transparent 1px)",
+        backgroundSize:"52px 52px",
+        maskImage:"radial-gradient(ellipse 100% 70% at 50% 0%, black 20%, transparent 100%)",
       }} />
 
-      <div style={{ flex: 1 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.55rem" }}>
-          <span style={{
-            fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.12em",
-            textTransform: "uppercase", color: a.tagColor,
-            fontFamily: "'Space Grotesk', sans-serif",
-          }}>
-            {a.tag}
-          </span>
-          <span style={{ width: "3px", height: "3px", borderRadius: "50%", background: "rgba(255,255,255,0.2)", display: "inline-block" }} />
-          <span style={{ fontSize: "0.78rem", color: "#52525b", fontFamily: "'Outfit', sans-serif" }}>
-            {a.min}
-          </span>
-        </div>
-        <h3 style={{
-          fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600,
-          fontSize: "1.15rem", color: hov ? "#fff" : "#d4d4d8",
-          lineHeight: 1.35, transition: "color 0.3s", letterSpacing: "-0.01em",
-        }}>
-          {a.title}
-        </h3>
-      </div>
+      {/* Bottom fade */}
+      <div style={{ position:"absolute", bottom:0, left:0, right:0, height:"30%", background:"linear-gradient(to top,#04050a,transparent)", pointerEvents:"none", zIndex:1 }} />
 
-      <div style={{
-        color: a.tagColor, opacity: hov ? 1 : 0,
-        transform: hov ? "translateX(0)" : "translateX(-8px)",
-        transition: "all 0.3s ease", fontFamily: "'Space Grotesk', sans-serif",
-        fontWeight: 700, fontSize: "1.1rem", flexShrink: 0,
-      }}>
-        →
-      </div>
-    </div>
-  );
-}
-
-function ServicePill({ s, index }: { s: (typeof services)[0]; index: number }) {
-  const [hov, setHov] = useState(false);
-  const { ref, visible } = useInView(0.1);
-
-  const inner = (
-    <div
-      ref={ref}
-      onMouseEnter={() => setHov(true)}
-      onMouseLeave={() => setHov(false)}
-      style={{
-        display: "flex", alignItems: "flex-start", gap: "1.1rem", padding: "1.6rem",
-        background: hov ? `linear-gradient(135deg, rgba(255,255,255,0.04) 0%, ${s.accent}08 100%)` : "rgba(255,255,255,0.015)",
-        border: `1px solid ${hov ? s.accent + "40" : "rgba(255,255,255,0.07)"}`,
-        borderRadius: "16px", transition: "all 0.35s cubic-bezier(0.23,1,0.32,1)", cursor: "pointer",
-        transform: visible ? (hov ? "translateY(-6px)" : "translateY(0)") : "translateY(20px)",
-        opacity: visible ? 1 : 0,
-        transitionDelay: visible ? `${index * 0.07}s` : "0s",
-        boxShadow: hov ? `0 16px 40px -12px ${s.accent}25, inset 0 1px 0 rgba(255,255,255,0.05)` : "inset 0 1px 0 rgba(255,255,255,0.03)",
-      }}
-    >
-      <div style={{
-        fontSize: "1.3rem", color: s.accent, lineHeight: 1,
-        background: `${s.accent}18`, padding: "0.75rem", borderRadius: "12px", flexShrink: 0,
-      }}>
-        {s.icon}
-      </div>
-      <div>
-        <div style={{
-          fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: "1.05rem",
-          color: hov ? "#fff" : "#e4e4e7", marginBottom: "0.3rem",
-          letterSpacing: "-0.01em", transition: "color 0.3s",
-        }}>
-          {s.label}
-        </div>
-        <div style={{ fontSize: "0.83rem", color: "#71717a", fontFamily: "'Outfit', sans-serif", lineHeight: 1.4 }}>
-          {s.sub}
-        </div>
-      </div>
-    </div>
-  );
-
-  if (s.href) return <a href={s.href} style={{ textDecoration: "none", display: "block" }}>{inner}</a>;
-  return inner;
-}
-
-function NoiseOverlay() {
-  return (
-    <svg style={{ position: "fixed", inset: 0, width: "100%", height: "100%", zIndex: 0, pointerEvents: "none", opacity: 0.025 }} xmlns="http://www.w3.org/2000/svg">
-      <filter id="noise">
-        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
-        <feColorMatrix type="saturate" values="0" />
-      </filter>
-      <rect width="100%" height="100%" filter="url(#noise)" />
-    </svg>
-  );
-}
-
-export default function Home() {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => { setMounted(true); }, []);
-
-  return (
-    <main style={{ minHeight: "100vh", background: "#080808", color: "#fff", overflowX: "hidden" }}>
-
-      <div className="grid-bg" />
-      <div className="glow-tl" />
-      <div className="glow-br" />
-      <NoiseOverlay />
-
-      <div style={{ position: "relative", zIndex: 1, maxWidth: "860px", margin: "0 auto", padding: "0 clamp(1.5rem, 5vw, 3rem)" }}>
+      {/* Content */}
+      <div style={{ position:"relative", zIndex:2, maxWidth:"900px", margin:"0 auto", padding:"0 clamp(1.5rem,5vw,3rem)", minHeight:"100vh", display:"flex", flexDirection:"column" }}>
 
         {/* Nav */}
-        <nav style={{
-          display: "flex", alignItems: "center", justifyContent: "space-between",
-          padding: "2rem 0", opacity: mounted ? 1 : 0, transition: "opacity 0.6s ease",
-        }}>
-          <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "0.75rem" }}>
-            <div style={{
-              width: "34px", height: "34px", borderRadius: "9px",
-              background: "linear-gradient(135deg, #fff 0%, #d4d4d8 100%)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              boxShadow: "0 2px 12px rgba(255,255,255,0.1)",
-            }}>
-              <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: "1rem", color: "#080808" }}>N</span>
+        <nav className="fu1" style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"2rem 0" }}>
+          <div style={{ display:"flex", alignItems:"center", gap:"0.75rem" }}>
+            <div style={{ width:"34px", height:"34px", borderRadius:"9px", background:"linear-gradient(135deg,#fff 0%,#d4d4d8 100%)", display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 2px 16px rgba(56,189,248,0.2)" }}>
+              <span style={{ fontFamily:"'Syne',sans-serif", fontWeight:800, fontSize:"1rem", color:"#04050a" }}>N</span>
             </div>
-            <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: "1.05rem", letterSpacing: "0.04em", color: "#fff" }}>
-              Nilckson<span style={{ color: "#52525b", fontWeight: 500 }}>Tech</span>
+            <span style={{ fontFamily:"'Syne',sans-serif", fontWeight:700, fontSize:"1.05rem", letterSpacing:"0.02em", color:"#fff" }}>
+              Nilckson<span style={{ color:"#3f3f46" }}>Tech</span>
             </span>
-          </Link>
-          <a href="/courses" className="nav-link">Browse courses →</a>
+          </div>
+          <a href="#" className="nav-a">Browse courses â†’</a>
         </nav>
 
         {/* Hero */}
-        <section style={{ padding: "5rem 0 4.5rem" }}>
-          <div className="fade-up d1" style={{
-            display: "inline-flex", alignItems: "center", gap: "0.5rem",
-            marginBottom: "2.25rem", padding: "0.35rem 1rem 0.35rem 0.5rem",
-            borderRadius: "100px", border: "1px solid rgba(255,255,255,0.1)",
-            background: "rgba(255,255,255,0.03)", backdropFilter: "blur(8px)",
-          }}>
-            <span style={{
-              display: "inline-flex", alignItems: "center", gap: "0.3rem",
-              background: "rgba(34,211,238,0.15)", borderRadius: "100px", padding: "0.2rem 0.6rem",
-              fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.08em",
-              color: "#22d3ee", textTransform: "uppercase", fontFamily: "'Space Grotesk', sans-serif",
-            }}>
-              <span style={{
-                width: "5px", height: "5px", borderRadius: "50%",
-                background: "#22d3ee", boxShadow: "0 0 6px #22d3ee", display: "inline-block",
-              }} />
-              Live
-            </span>
-            <span style={{ fontSize: "0.78rem", color: "#a1a1aa", fontFamily: "'Outfit', sans-serif", fontWeight: 400 }}>
-              Digital Innovation Hub
-            </span>
-          </div>
-
-          <h1 className="fade-up d2" style={{
-            fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700,
-            fontSize: "clamp(2.6rem, 7vw, 4.2rem)", lineHeight: 1.08,
-            letterSpacing: "-0.04em", marginBottom: "1.5rem", color: "#fff",
-          }}>
-            Architecting the <br />
-            <span style={{
-              background: "linear-gradient(100deg, #22d3ee 0%, #818cf8 50%, #a78bfa 100%)",
-              WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
-            }}>
-              Next Generation.
-            </span>
-          </h1>
-
-          <p className="fade-up d3" style={{
-            fontSize: "1.05rem", color: "#71717a", maxWidth: "480px",
-            lineHeight: 1.65, fontWeight: 400, marginBottom: "3rem", fontFamily: "'Outfit', sans-serif",
-          }}>
-            Enterprise systems, cybersecurity, and tech education —{" "}
-            <span style={{ color: "#a1a1aa" }}>built for modern digital professionals.</span>
-          </p>
-
-          <div className="fade-up d4 cta-row" style={{ display: "flex", gap: "0.85rem", flexWrap: "wrap", alignItems: "center" }}>
-            <a href="/courses" className="btn-primary">Start Learning</a>
-            <a href="/systems" className="btn-ghost">View Systems</a>
-            <span style={{ fontSize: "0.8rem", color: "#3f3f46", fontFamily: "'Outfit', sans-serif", marginLeft: "0.25rem" }}>
-              No account needed
-            </span>
-          </div>
-        </section>
-
-        {/* Stats */}
-        <div className="fade-up d4" style={{
-          display: "flex", flexWrap: "wrap",
-          borderTop: "1px solid rgba(255,255,255,0.06)",
-          borderBottom: "1px solid rgba(255,255,255,0.06)",
-          marginBottom: "5rem",
-        }}>
-          {[
-            { val: "12K+", label: "Students enrolled" },
-            { val: "98%",  label: "Uptime SLA"        },
-            { val: "340+", label: "Hours of content"   },
-            { val: "4.9★", label: "Average rating"     },
-          ].map((stat, i) => (
-            <div key={stat.label} style={{
-              flex: "1 1 25%", minWidth: "120px", padding: "1.5rem 1.25rem",
-              borderRight: i < 3 ? "1px solid rgba(255,255,255,0.06)" : "none",
-            }}>
-              <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: "1.5rem", color: "#fff", letterSpacing: "-0.03em", marginBottom: "0.25rem" }}>
-                {stat.val}
-              </div>
-              <div style={{ fontSize: "0.78rem", color: "#52525b", fontFamily: "'Outfit', sans-serif" }}>
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Services */}
-        <section style={{ marginBottom: "5.5rem" }}>
-          <p className="section-eyebrow">What we build</p>
-          <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1.3rem, 3vw, 1.6rem)", fontWeight: 700, color: "#fff", letterSpacing: "-0.02em", marginBottom: "1.75rem" }}>
-            Core Systems
-          </h2>
-          <div className="services-grid">
-            {services.map((s, i) => <ServicePill key={s.label} s={s} index={i} />)}
-          </div>
-        </section>
-
-        {/* Articles */}
-        <section style={{ marginBottom: "6rem" }}>
-          <p className="section-eyebrow">Intelligence feed</p>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "1rem" }}>
-            <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1.3rem, 3vw, 1.6rem)", fontWeight: 700, color: "#fff", letterSpacing: "-0.02em" }}>
-              Latest Intel
-            </h2>
-            <a href="/articles" className="nav-link" style={{ fontSize: "0.85rem" }}>View archive →</a>
-          </div>
+        <div style={{ flex:1, display:"flex", alignItems:"center", paddingBottom:"6rem" }}>
           <div>
-            {articles.map((a, i) => <ArticleCard key={a.slug} a={a} i={i} />)}
+
+            {/* Badge */}
+            <div className="fu2" style={{ display:"inline-flex", alignItems:"center", gap:"0.6rem", marginBottom:"2.5rem", padding:"0.3rem 1rem 0.3rem 0.4rem", borderRadius:"100px", border:"1px solid rgba(56,189,248,0.18)", background:"rgba(56,189,248,0.04)", backdropFilter:"blur(12px)" }}>
+              <span style={{ display:"inline-flex", alignItems:"center", gap:"0.35rem", background:"rgba(34,211,238,0.1)", borderRadius:"100px", padding:"0.18rem 0.65rem", fontFamily:"'JetBrains Mono',monospace", fontSize:"0.62rem", fontWeight:500, letterSpacing:"0.06em", color:"#22d3ee", textTransform:"uppercase" }}>
+                <span style={{ width:"5px", height:"5px", borderRadius:"50%", background:"#22d3ee", display:"inline-block", animation:"pulseDot 2s ease-in-out infinite" }} />
+                Online
+              </span>
+              <span style={{ fontFamily:"'DM Sans',sans-serif", fontSize:"0.78rem", color:"#6b7280", fontWeight:400 }}>
+                Digital Innovation Hub
+              </span>
+            </div>
+
+            {/* Headline */}
+            <h1 className="fu3" style={{ fontFamily:"'Syne',sans-serif", fontWeight:800, fontSize:"clamp(3rem,8vw,5.2rem)", lineHeight:1.0, letterSpacing:"-0.04em", marginBottom:"0.2rem", color:"#fff" }}>
+              Deep tech.
+            </h1>
+            <h1 className="fu3" style={{ fontFamily:"'Syne',sans-serif", fontWeight:800, fontSize:"clamp(3rem,8vw,5.2rem)", lineHeight:1.0, letterSpacing:"-0.04em", marginBottom:"2rem", background:"linear-gradient(110deg,#38bdf8 0%,#818cf8 45%,#a78bfa 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>
+              No shortcuts.
+            </h1>
+
+            {/* Subtext */}
+            <p className="fu4" style={{ fontFamily:"'DM Sans',sans-serif", fontSize:"1.05rem", color:"#6b7280", maxWidth:"460px", lineHeight:1.7, fontWeight:300, marginBottom:"3rem" }}>
+              Enterprise systems, cybersecurity, and real-world tech â€”{" "}
+              <span style={{ color:"#9ca3af", fontWeight:400 }}>built for engineers who mean business.</span>
+            </p>
+
+            {/* CTAs */}
+            <div className="fu5" style={{ display:"flex", gap:"0.85rem", flexWrap:"wrap", alignItems:"center" }}>
+              <a href="#"
+                onMouseEnter={() => setHov1(true)}
+                onMouseLeave={() => setHov1(false)}
+                style={{ display:"inline-flex", alignItems:"center", gap:"0.5rem", padding:"0.9rem 2rem", background:"#fff", borderRadius:"10px", color:"#04050a", fontWeight:700, fontSize:"0.88rem", textDecoration:"none", fontFamily:"'Syne',sans-serif", letterSpacing:"0.01em", transition:"transform 0.25s cubic-bezier(0.23,1,0.32,1),box-shadow 0.25s", transform:hov1?"translateY(-4px)":"translateY(0)", boxShadow:hov1?"0 16px 40px -8px rgba(56,189,248,0.3)":"none" }}>
+                See what's inside <span>â†’</span>
+              </a>
+              <a href="#"
+                onMouseEnter={() => setHov2(true)}
+                onMouseLeave={() => setHov2(false)}
+                style={{ display:"inline-flex", alignItems:"center", padding:"0.9rem 2rem", background:hov2?"rgba(255,255,255,0.06)":"rgba(255,255,255,0.03)", border:`1px solid ${hov2?"rgba(56,189,248,0.3)":"rgba(255,255,255,0.08)"}`, borderRadius:"10px", color:hov2?"#fff":"#9ca3af", fontWeight:500, fontSize:"0.88rem", textDecoration:"none", fontFamily:"'DM Sans',sans-serif", transition:"all 0.25s cubic-bezier(0.23,1,0.32,1)", transform:hov2?"translateY(-4px)":"translateY(0)" }}>
+                View Systems
+              </a>
+              <span style={{ fontFamily:"'JetBrains Mono',monospace", fontSize:"0.7rem", color:"#374151", letterSpacing:"0.04em" }}>
+                // no account needed
+              </span>
+            </div>
+
+            {/* Stats */}
+            <div className="fu5" style={{ display:"flex", gap:"2.5rem", marginTop:"4rem", flexWrap:"wrap" }}>
+              {[{val:"12K+",label:"Engineers"},{val:"340+",label:"Hours"},{val:"4.9â˜…",label:"Rating"},{val:"98%",label:"Uptime"}].map(s => (
+                <div key={s.label}>
+                  <div style={{ fontFamily:"'Syne',sans-serif", fontWeight:800, fontSize:"1.4rem", color:"#fff", letterSpacing:"-0.03em" }}>{s.val}</div>
+                  <div style={{ fontFamily:"'DM Sans',sans-serif", fontSize:"0.7rem", color:"#4b5563", marginTop:"0.1rem", letterSpacing:"0.06em", textTransform:"uppercase" }}>{s.label}</div>
+                </div>
+              ))}
+            </div>
+
           </div>
-        </section>
-
-        <SocialBar />
-
-        {/* Footer */}
-        <footer style={{
-          borderTop: "1px solid rgba(255,255,255,0.07)", padding: "2rem 0 3rem",
-          display: "flex", justifyContent: "space-between", alignItems: "center",
-          flexWrap: "wrap", gap: "1rem", marginTop: "2rem",
-        }}>
-          <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: "0.85rem", letterSpacing: "0.08em", color: "#3f3f46" }}>
-            NILCKSONTECH
-          </span>
-          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-            <span style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", fontSize: "0.78rem", color: "#3f3f46", fontFamily: "'Outfit', sans-serif" }}>
-              <span style={{ width: "5px", height: "5px", borderRadius: "50%", background: "#34d399", boxShadow: "0 0 6px #34d399", display: "inline-block" }} />
-              All systems operational
-            </span>
-            <span style={{ fontSize: "0.78rem", color: "#27272a", fontFamily: "'Outfit', sans-serif" }}>
-              © {new Date().getFullYear()}
-            </span>
-          </div>
-        </footer>
-
+        </div>
       </div>
-    </main>
+    </div>
   );
-      }
+}
