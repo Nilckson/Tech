@@ -1,17 +1,28 @@
+"use client";
+
 import { useState, useEffect, useRef } from "react";
 
 function Aurora() {
-  const canvasRef = useRef(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     const canvas = canvasRef.current;
+    if (!canvas) return;
     const ctx = canvas.getContext("2d");
-    let raf, t = 0;
+    if (!ctx) return;
+    
+    let raf: number, t = 0;
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
     const W = canvas.width, H = canvas.height;
 
+    // Extend rendering context to hold stars
+    interface CustomCanvasRenderingContext2D extends CanvasRenderingContext2D {
+      _stars?: Array<{ x: number; y: number; r: number; phase: number }>;
+    }
+    const customCtx = ctx as CustomCanvasRenderingContext2D;
+
     function draw() {
-      ctx.clearRect(0, 0, W, H);
+      customCtx.clearRect(0, 0, W, H);
 
       const bands = [
         { y: H * 0.3,  color1: "rgba(56,189,248,0.18)",  color2: "rgba(99,102,241,0.12)",  speed: 0.008, amp: 60, freq: 2.1 },
@@ -21,40 +32,40 @@ function Aurora() {
       ];
 
       bands.forEach(b => {
-        ctx.beginPath();
+        customCtx.beginPath();
         const steps = 200;
         for (let i = 0; i <= steps; i++) {
           const x = (i / steps) * W;
           const y = b.y + Math.sin(i * 0.03 * b.freq + t * b.speed) * b.amp + Math.sin(i * 0.05 * b.freq - t * b.speed * 1.3) * (b.amp * 0.4);
-          i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+          i === 0 ? customCtx.moveTo(x, y) : customCtx.lineTo(x, y);
         }
         for (let i = steps; i >= 0; i--) {
           const x = (i / steps) * W;
           const y = b.y + Math.sin(i * 0.03 * b.freq + t * b.speed) * b.amp + Math.sin(i * 0.05 * b.freq - t * b.speed * 1.3) * (b.amp * 0.4) + 80;
-          ctx.lineTo(x, y);
+          customCtx.lineTo(x, y);
         }
-        ctx.closePath();
-        const grad = ctx.createLinearGradient(0, b.y - b.amp, 0, b.y + b.amp + 80);
+        customCtx.closePath();
+        const grad = customCtx.createLinearGradient(0, b.y - b.amp, 0, b.y + b.amp + 80);
         grad.addColorStop(0, "transparent");
         grad.addColorStop(0.3, b.color1);
         grad.addColorStop(0.7, b.color2);
         grad.addColorStop(1, "transparent");
-        ctx.fillStyle = grad;
-        ctx.fill();
+        customCtx.fillStyle = grad;
+        customCtx.fill();
       });
 
-      if (!ctx._stars) {
-        ctx._stars = Array.from({ length: 140 }, () => ({
+      if (!customCtx._stars) {
+        customCtx._stars = Array.from({ length: 140 }, () => ({
           x: Math.random() * W, y: Math.random() * H * 0.75,
           r: Math.random() * 1.3 + 0.2, phase: Math.random() * Math.PI * 2,
         }));
       }
-      ctx._stars.forEach(s => {
+      customCtx._stars.forEach(s => {
         const alpha = 0.2 + Math.sin(t * 0.018 + s.phase) * 0.2;
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255,255,255,${alpha})`;
-        ctx.fill();
+        customCtx.beginPath();
+        customCtx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        customCtx.fillStyle = `rgba(255,255,255,${alpha})`;
+        customCtx.fill();
       });
 
       t++;
@@ -121,7 +132,7 @@ export default function HeroPreview() {
               Nilckson<span style={{ color:"#3f3f46" }}>Tech</span>
             </span>
           </div>
-          <a href="#" className="nav-a">Browse courses â†’</a>
+          <a href="#" className="nav-a">Browse courses →</a>
         </nav>
 
         {/* Hero */}
@@ -149,7 +160,7 @@ export default function HeroPreview() {
 
             {/* Subtext */}
             <p className="fu4" style={{ fontFamily:"'DM Sans',sans-serif", fontSize:"1.05rem", color:"#6b7280", maxWidth:"460px", lineHeight:1.7, fontWeight:300, marginBottom:"3rem" }}>
-              Enterprise systems, cybersecurity, and real-world tech â€”{" "}
+              Enterprise systems, cybersecurity, and real-world tech —{" "}
               <span style={{ color:"#9ca3af", fontWeight:400 }}>built for engineers who mean business.</span>
             </p>
 
@@ -159,7 +170,7 @@ export default function HeroPreview() {
                 onMouseEnter={() => setHov1(true)}
                 onMouseLeave={() => setHov1(false)}
                 style={{ display:"inline-flex", alignItems:"center", gap:"0.5rem", padding:"0.9rem 2rem", background:"#fff", borderRadius:"10px", color:"#04050a", fontWeight:700, fontSize:"0.88rem", textDecoration:"none", fontFamily:"'Syne',sans-serif", letterSpacing:"0.01em", transition:"transform 0.25s cubic-bezier(0.23,1,0.32,1),box-shadow 0.25s", transform:hov1?"translateY(-4px)":"translateY(0)", boxShadow:hov1?"0 16px 40px -8px rgba(56,189,248,0.3)":"none" }}>
-                See what's inside <span>â†’</span>
+                See what's inside <span>→</span>
               </a>
               <a href="#"
                 onMouseEnter={() => setHov2(true)}
@@ -174,7 +185,7 @@ export default function HeroPreview() {
 
             {/* Stats */}
             <div className="fu5" style={{ display:"flex", gap:"2.5rem", marginTop:"4rem", flexWrap:"wrap" }}>
-              {[{val:"12K+",label:"Engineers"},{val:"340+",label:"Hours"},{val:"4.9â˜…",label:"Rating"},{val:"98%",label:"Uptime"}].map(s => (
+              {[{val:"12K+",label:"Engineers"},{val:"340+",label:"Hours"},{val:"4.9★",label:"Rating"},{val:"98%",label:"Uptime"}].map(s => (
                 <div key={s.label}>
                   <div style={{ fontFamily:"'Syne',sans-serif", fontWeight:800, fontSize:"1.4rem", color:"#fff", letterSpacing:"-0.03em" }}>{s.val}</div>
                   <div style={{ fontFamily:"'DM Sans',sans-serif", fontSize:"0.7rem", color:"#4b5563", marginTop:"0.1rem", letterSpacing:"0.06em", textTransform:"uppercase" }}>{s.label}</div>
@@ -187,4 +198,5 @@ export default function HeroPreview() {
       </div>
     </div>
   );
-}
+      }
+            
