@@ -2,20 +2,20 @@
 
 import SocialBar from "./components/SocialIcons";
 import Link from "next/link";
-import { useEffect, useRef, useState, useCallback, MouseEvent } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { articles } from "./data/articles";
 
-// â”€â”€â”€ Data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Data ────────────────────────────────────────────────────────────────────
 
 const services = [
-  { href: "/systems",  icon: "â¬¡", accent: "#22d3ee", label: "Systems",  sub: "Architecture & deployment" },
-  { href: "/security", icon: "â—ˆ", accent: "#a78bfa", label: "Security", sub: "Threat hunting & defense"  },
-  { href: "/courses",  icon: "â—‰", accent: "#34d399", label: "Courses",  sub: "Learn at your own pace"    },
-  { href: "/merch",    icon: "â—†", accent: "#fbbf24", label: "Merch",    sub: "Tech-inspired gear"        },
+  { href: "/systems",  icon: "⬡", accent: "#22d3ee", label: "Systems",  sub: "Architecture & deployment" },
+  { href: "/security", icon: "◈", accent: "#a78bfa", label: "Security", sub: "Threat hunting & defense"  },
+  { href: "/courses",  icon: "◉", accent: "#34d399", label: "Courses",  sub: "Learn at your own pace"    },
+  { href: "/merch",    icon: "◆", accent: "#fbbf24", label: "Merch",    sub: "Tech-inspired gear"        },
 ];
 
-// â”€â”€â”€ Hooks â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Hooks ───────────────────────────────────────────────────────────────────
 
 function useInView(threshold = 0.12) {
   const ref = useRef<HTMLDivElement>(null);
@@ -33,7 +33,7 @@ function useInView(threshold = 0.12) {
   return { ref, visible };
 }
 
-// â”€â”€â”€ Article Card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Article Card ─────────────────────────────────────────────────────────────
 
 function ArticleCard({ a, i }: { a: (typeof articles)[0]; i: number }) {
   const [hov, setHov] = useState(false);
@@ -121,13 +121,13 @@ function ArticleCard({ a, i }: { a: (typeof articles)[0]; i: number }) {
         fontSize: "1.1rem",
         flexShrink: 0,
       }}>
-        â†’
+        →
       </div>
     </div>
   );
 }
 
-// â”€â”€â”€ Service Pill â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Service Pill ─────────────────────────────────────────────────────────────
 
 function ServicePill({ s, index }: { s: (typeof services)[0]; index: number }) {
   const [hov, setHov] = useState(false);
@@ -193,7 +193,7 @@ function ServicePill({ s, index }: { s: (typeof services)[0]; index: number }) {
   return inner;
 }
 
-// â”€â”€â”€ Noise Overlay â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Noise Overlay ────────────────────────────────────────────────────────────
 
 function NoiseOverlay() {
   return (
@@ -210,7 +210,7 @@ function NoiseOverlay() {
   );
 }
 
-// â”€â”€â”€ Main Page â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Main Page ────────────────────────────────────────────────────────────────
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -225,7 +225,6 @@ export default function Home() {
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         body { background: #080808; -webkit-font-smoothing: antialiased; }
 
-        /* â”€â”€ Grid â”€â”€ */
         .grid-bg {
           position: fixed; inset: 0; z-index: 0; pointer-events: none;
           background-image:
@@ -235,7 +234,6 @@ export default function Home() {
           mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 30%, transparent 100%);
         }
 
-        /* â”€â”€ Glows â”€â”€ */
         .glow-tl {
           position: fixed; top: -15%; left: -5%; width: 55vw; height: 55vh;
           background: radial-gradient(circle, rgba(34,211,238,0.12) 0%, transparent 65%);
@@ -253,7 +251,6 @@ export default function Home() {
           50% { transform: scale(1.08); opacity: 0.7; }
         }
 
-        /* â”€â”€ Hero entrance â”€â”€ */
         @keyframes fadeUp {
           from { opacity: 0; transform: translateY(28px); }
           to   { opacity: 1; transform: translateY(0); }
@@ -264,13 +261,6 @@ export default function Home() {
         .d3 { animation-delay: 0.32s; }
         .d4 { animation-delay: 0.45s; }
 
-        /* â”€â”€ Badge shimmer â”€â”€ */
-        @keyframes shimmer {
-          0%   { background-position: -200% center; }
-          100% { background-position:  200% center; }
-        }
-
-        /* â”€â”€ Section label â”€â”€ */
         .section-eyebrow {
           font-family: 'Space Grotesk', sans-serif;
           font-size: 0.68rem; font-weight: 700;
@@ -278,7 +268,6 @@ export default function Home() {
           color: #52525b; margin-bottom: 0.6rem;
         }
 
-        /* â”€â”€ CTA Buttons â”€â”€ */
         .btn-primary {
           display: inline-flex; align-items: center; justify-content: center;
           padding: 0.9rem 2rem;
@@ -312,7 +301,6 @@ export default function Home() {
           transform: translateY(-4px);
         }
 
-        /* â”€â”€ Nav link â”€â”€ */
         .nav-link {
           font-size: 0.88rem; color: #71717a; text-decoration: none;
           font-family: 'Outfit', sans-serif; font-weight: 500;
@@ -320,13 +308,6 @@ export default function Home() {
         }
         .nav-link:hover { color: #e4e4e7; }
 
-        /* â”€â”€ Divider â”€â”€ */
-        .divider {
-          height: 1px;
-          background: linear-gradient(90deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02) 60%, transparent);
-        }
-
-        /* â”€â”€ Services grid â”€â”€ */
         .services-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 0.85rem; }
         @media (max-width: 600px) {
           .services-grid { grid-template-columns: 1fr; }
@@ -334,10 +315,7 @@ export default function Home() {
           .cta-row a { text-align: center; }
         }
 
-        /* â”€â”€ Focus visible â”€â”€ */
         *:focus-visible { outline: 2px solid #22d3ee; outline-offset: 4px; border-radius: 6px; }
-
-        /* â”€â”€ Scrollbar â”€â”€ */
         ::-webkit-scrollbar { width: 6px; background: #0a0a0a; }
         ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 6px; }
       `}</style>
@@ -355,7 +333,7 @@ export default function Home() {
           padding: "0 clamp(1.5rem, 5vw, 3rem)",
         }}>
 
-          {/* â”€â”€ Navigation â”€â”€ */}
+          {/* Navigation */}
           <nav style={{
             display: "flex", alignItems: "center", justifyContent: "space-between",
             padding: "2rem 0",
@@ -378,14 +356,11 @@ export default function Home() {
                 Nilckson<span style={{ color: "#52525b", fontWeight: 500 }}>Tech</span>
               </span>
             </Link>
-
-            <a href="/courses" className="nav-link">Browse courses â†’</a>
+            <a href="/courses" className="nav-link">Browse courses →</a>
           </nav>
 
-          {/* â”€â”€ Hero â”€â”€ */}
+          {/* Hero */}
           <section style={{ padding: "5rem 0 4.5rem" }}>
-
-            {/* Badge */}
             <div className="fade-up d1" style={{
               display: "inline-flex", alignItems: "center", gap: "0.5rem",
               marginBottom: "2.25rem",
@@ -405,10 +380,8 @@ export default function Home() {
               }}>
                 <span style={{
                   width: "5px", height: "5px", borderRadius: "50%",
-                  background: "#22d3ee",
-                  boxShadow: "0 0 6px #22d3ee",
-                  display: "inline-block",
-                  animation: "breathe 2s ease-in-out infinite",
+                  background: "#22d3ee", boxShadow: "0 0 6px #22d3ee",
+                  display: "inline-block", animation: "breathe 2s ease-in-out infinite",
                 }} />
                 Live
               </span>
@@ -420,7 +393,6 @@ export default function Home() {
               </span>
             </div>
 
-            {/* Headline */}
             <h1 className="fade-up d2" style={{
               fontFamily: "'Space Grotesk', sans-serif",
               fontWeight: 700,
@@ -442,21 +414,15 @@ export default function Home() {
               </span>
             </h1>
 
-            {/* Subheading */}
             <p className="fade-up d3" style={{
-              fontSize: "1.05rem",
-              color: "#71717a",
-              maxWidth: "480px",
-              lineHeight: 1.65,
-              fontWeight: 400,
-              marginBottom: "3rem",
+              fontSize: "1.05rem", color: "#71717a", maxWidth: "480px",
+              lineHeight: 1.65, fontWeight: 400, marginBottom: "3rem",
               fontFamily: "'Outfit', sans-serif",
             }}>
-              Enterprise systems, cybersecurity, and tech education â€”{" "}
+              Enterprise systems, cybersecurity, and tech education —{" "}
               <span style={{ color: "#a1a1aa" }}>built for modern digital professionals.</span>
             </p>
 
-            {/* CTAs */}
             <div className="fade-up d4 cta-row" style={{ display: "flex", gap: "0.85rem", flexWrap: "wrap", alignItems: "center" }}>
               <a href="/courses" className="btn-primary">Start Learning</a>
               <a href="/systems" className="btn-ghost">View Systems</a>
@@ -469,7 +435,7 @@ export default function Home() {
             </div>
           </section>
 
-          {/* â”€â”€ Stats strip â”€â”€ */}
+          {/* Stats strip */}
           <div className="fade-up d4" style={{
             display: "flex", gap: "0", flexWrap: "wrap",
             borderTop: "1px solid rgba(255,255,255,0.06)",
@@ -480,7 +446,7 @@ export default function Home() {
               { val: "12K+", label: "Students enrolled" },
               { val: "98%",  label: "Uptime SLA"        },
               { val: "340+", label: "Hours of content"   },
-              { val: "4.9â˜…", label: "Average rating"     },
+              { val: "4.9★", label: "Average rating"     },
             ].map((stat, i) => (
               <div key={stat.label} style={{
                 flex: "1 1 25%", minWidth: "120px",
@@ -494,15 +460,57 @@ export default function Home() {
                 }}>
                   {stat.val}
                 </div>
-                <div style={{
-                  fontSize: "0.78rem", color: "#52525b",
-                  fontFamily: "'Outfit', sans-serif",
-                }}>
+                <div style={{ fontSize: "0.78rem", color: "#52525b", fontFamily: "'Outfit', sans-serif" }}>
                   {stat.label}
                 </div>
               </div>
             ))}
           </div>
 
-          {/* â”€â”€ Services â”€â”€ */}
-          <section style={{ marginBottom: "5.5rem
+          {/* Services */}
+          <section style={{ marginBottom: "5.5rem" }}>
+            <p className="section-eyebrow">What we build</p>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "1.75rem" }}>
+              <h2 style={{
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: "clamp(1.3rem, 3vw, 1.6rem)",
+                fontWeight: 700, color: "#fff", letterSpacing: "-0.02em",
+              }}>
+                Core Systems
+              </h2>
+            </div>
+            <div className="services-grid">
+              {services.map((s, i) => <ServicePill key={s.label} s={s} index={i} />)}
+            </div>
+          </section>
+
+          {/* Articles */}
+          <section style={{ marginBottom: "6rem" }}>
+            <p className="section-eyebrow">Intelligence feed</p>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "0.5rem" }}>
+              <h2 style={{
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: "clamp(1.3rem, 3vw, 1.6rem)",
+                fontWeight: 700, color: "#fff", letterSpacing: "-0.02em",
+              }}>
+                Latest Intel
+              </h2>
+              <a href="/articles" className="nav-link" style={{ fontSize: "0.85rem" }}>
+                View archive →
+              </a>
+            </div>
+            <div style={{ marginTop: "1rem" }}>
+              {articles.map((a, i) => <ArticleCard key={a.slug} a={a} i={i} />)}
+            </div>
+          </section>
+
+          <SocialBar />
+
+          {/* Footer */}
+          <footer style={{
+            borderTop: "1px solid rgba(255,255,255,0.07)",
+            padding: "2rem 0 3rem",
+            display: "flex", justifyContent: "space-between", alignItems: "center",
+            flexWrap: "wrap", gap: "1rem", marginTop: "2rem",
+          }}>
+            
