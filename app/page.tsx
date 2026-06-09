@@ -13,82 +13,6 @@ const services = [
   { href: "/merch",    icon: "◆", accent: "#fbbf24", label: "Merchandise",    sub: "Premium tech gear & apparel" },
 ];
 
-function Aurora() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-    
-    let raf: number, t = 0;
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-    const W = canvas.width, H = canvas.height;
-
-    interface CustomCanvasRenderingContext2D extends CanvasRenderingContext2D {
-      _stars?: Array<{ x: number; y: number; r: number; phase: number }>;
-    }
-    const customCtx = ctx as CustomCanvasRenderingContext2D;
-
-    function draw() {
-      customCtx.clearRect(0, 0, W, H);
-
-      const bands = [
-        { y: H * 0.3,  color1: "rgba(56,189,248,0.18)",  color2: "rgba(99,102,241,0.12)",  speed: 0.008, amp: 60, freq: 2.1 },
-        { y: H * 0.45, color1: "rgba(139,92,246,0.15)",  color2: "rgba(34,211,238,0.1)",   speed: 0.011, amp: 45, freq: 1.7 },
-        { y: H * 0.25, color1: "rgba(34,211,238,0.1)",   color2: "rgba(167,139,250,0.08)", speed: 0.006, amp: 70, freq: 2.8 },
-        { y: H * 0.55, color1: "rgba(99,102,241,0.08)",  color2: "rgba(56,189,248,0.06)",  speed: 0.014, amp: 35, freq: 1.4 },
-      ];
-
-      bands.forEach(b => {
-        customCtx.beginPath();
-        const steps = 200;
-        for (let i = 0; i <= steps; i++) {
-          const x = (i / steps) * W;
-          const y = b.y + Math.sin(i * 0.03 * b.freq + t * b.speed) * b.amp + Math.sin(i * 0.05 * b.freq - t * b.speed * 1.3) * (b.amp * 0.4);
-          i === 0 ? customCtx.moveTo(x, y) : customCtx.lineTo(x, y);
-        }
-        for (let i = steps; i >= 0; i--) {
-          const x = (i / steps) * W;
-          const y = b.y + Math.sin(i * 0.03 * b.freq + t * b.speed) * b.amp + Math.sin(i * 0.05 * b.freq - t * b.speed * 1.3) * (b.amp * 0.4) + 80;
-          customCtx.lineTo(x, y);
-        }
-        customCtx.closePath();
-        const grad = customCtx.createLinearGradient(0, b.y - b.amp, 0, b.y + b.amp + 80);
-        grad.addColorStop(0, "transparent");
-        grad.addColorStop(0.3, b.color1);
-        grad.addColorStop(0.7, b.color2);
-        grad.addColorStop(1, "transparent");
-        customCtx.fillStyle = grad;
-        customCtx.fill();
-      });
-
-      if (!customCtx._stars) {
-        customCtx._stars = Array.from({ length: 140 }, () => ({
-          x: Math.random() * W, y: Math.random() * H * 0.75,
-          r: Math.random() * 1.3 + 0.2, phase: Math.random() * Math.PI * 2,
-        }));
-      }
-      customCtx._stars.forEach(s => {
-        const alpha = 0.2 + Math.sin(t * 0.018 + s.phase) * 0.2;
-        customCtx.beginPath();
-        customCtx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-        customCtx.fillStyle = `rgba(255,255,255,${alpha})`;
-        customCtx.fill();
-      });
-
-      t++;
-      raf = requestAnimationFrame(draw);
-    }
-    draw();
-    return () => cancelAnimationFrame(raf);
-  }, []);
-  
-  return <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none" }} />;
-}
-
 function useInView(threshold = 0.12) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -134,7 +58,6 @@ function ArticleCard({ a, i }: { a: (typeof articles)[0]; i: number }) {
         justifyContent: "space-between",
         gap: "1rem",
         borderRadius: "4px",
-        outline: "none",
       }}
     >
       <div style={{
@@ -210,52 +133,12 @@ export default function Home() {
   useEffect(() => { setMounted(true); }, []);
 
   return (
-    <main style={{ minHeight: "100vh", position: "relative", overflowX: "hidden", background: "#04050a", color: "#fff" }}>
+    <main style={{ minHeight: "100vh", position: "relative", overflowX: "hidden" }}>
       
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Outfit:wght@300;400;500;700&display=swap');
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        .fade-up { animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
-        .d1 { animation-delay: 0.1s; } .d2 { animation-delay: 0.2s; }
-        .d3 { animation-delay: 0.3s; } .d4 { animation-delay: 0.4s; }
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(30px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-        .btn-primary {
-          display: inline-flex; align-items: center; justify-content: center;
-          padding: 0.9rem 2rem; background: #fff; border-radius: 8px; 
-          color: #050505; font-weight: 700; font-size: 0.95rem; text-decoration: none;
-          font-family: 'Space Grotesk', sans-serif; transition: transform .2s;
-        }
-        .btn-primary:hover { transform: translateY(-3px); }
-        .btn-ghost {
-          display: inline-flex; align-items: center; justify-content: center;
-          padding: 0.9rem 2rem; background: transparent; border: 1px solid rgba(255,255,255,0.15);
-          border-radius: 8px; color: #fff; font-weight: 600; font-size: 0.95rem; text-decoration: none;
-          transition: all .2s; font-family: 'Space Grotesk', sans-serif;
-        }
-        .btn-ghost:hover { background: rgba(255,255,255,0.05); }
-        .nav-link { font-size: 0.85rem; color: #a1a1aa; text-decoration: none; font-family: 'Outfit', sans-serif; transition: color 0.2s; }
-        .nav-link:hover { color: #fff; }
-        .section-eyebrow { font-size: 0.7rem; letter-spacing: 0.15em; color: #52525b; text-transform: uppercase; font-weight: 700; margin-bottom: 0.5rem; font-family: 'Space Grotesk', sans-serif; }
-        .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-        html { scroll-behavior: smooth; }
-        @media (max-width: 768px) { .services-grid { grid-template-columns: 1fr; } }
-      `}</style>
-
-      {/* Layer 1: Deep Tech Image Background */}
-      <div style={{
-        position: "absolute", inset: 0, zIndex: 0,
-        backgroundImage: "url('https://images.unsplash.com/photo-1614064641913-6b17cac80236?q=80&w=2532&auto=format&fit=crop')",
-        backgroundSize: "cover", backgroundPosition: "center",
-        opacity: 0.06, mixBlendMode: "screen", pointerEvents: "none"
-      }} />
-
-      {/* Layer 2: Aurora & Gradients */}
-      <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 130% 80% at 50% -5%, rgba(13,20,32,0.8) 0%, rgba(4,5,10,0.95) 65%)", zIndex: 0 }} />
-      <div style={{ position: "absolute", inset: 0, zIndex: 1 }}><Aurora /></div>
-      <div style={{ position: "absolute", inset: 0, zIndex: 2, pointerEvents: "none", backgroundImage: "linear-gradient(rgba(255,255,255,0.016) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.016) 1px,transparent 1px)", backgroundSize: "52px 52px", maskImage: "radial-gradient(ellipse 100% 70% at 50% 0%, black 20%, transparent 100%)" }} />
+      {/* Background Elements from globals.css */}
+      <div className="grid-bg" />
+      <div className="glow-tl" />
+      <div className="glow-br" />
 
       <div style={{ position: "relative", zIndex: 3, maxWidth: "860px", margin: "0 auto", padding: "0 clamp(1.5rem, 5vw, 3rem)" }}>
 
@@ -343,5 +226,4 @@ export default function Home() {
       </div>
     </main>
   );
-      }
-        
+}
