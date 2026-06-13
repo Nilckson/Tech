@@ -1,15 +1,43 @@
 import { createHardware } from "./actions";
+import { cookies } from 'next/headers';
+import { createServerClient } from '@supabase/ssr';
+import { redirect } from 'next/navigation';
 
-export default function AdminDashboard() {
+export default async function AdminDashboard() {
+  const cookieStore = await cookies();
+
+  // Initialize secure connection
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return cookieStore.getAll();
+        },
+      },
+    }
+  );
+
+  // Fetch current user
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) {
+    redirect('/login');
+  }
+
   return (
-    <div className="min-h-screen p-8 font-sans">
+    <div className="min-h-screen p-8 font-sans bg-black">
       <div className="max-w-4xl mx-auto relative z-50">
         
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-3xl font-bold text-white">Admin Control Panel</h1>
-          <span className="bg-green-900/30 text-green-400 px-3 py-1 rounded-full text-sm font-mono border border-green-800/50">
-            Secure Session Active
-          </span>
+          <div className="flex flex-col items-end">
+            <span className="bg-green-900/30 text-green-400 px-3 py-1 rounded-full text-sm font-mono border border-green-800/50 mb-1">
+              Secure Session Active
+            </span>
+            {/* Displays the email you just used to log in! */}
+            <span className="text-xs text-gray-400 font-mono">{user.email}</span>
+          </div>
         </div>
         
         <div className="bg-[#111111] border border-gray-800 rounded-2xl p-6 shadow-2xl">

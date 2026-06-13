@@ -42,7 +42,7 @@ export default function StorefrontUI({ products }: { products: Product[] }) {
 
   return (
     <>
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
         
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -97,7 +97,7 @@ export default function StorefrontUI({ products }: { products: Product[] }) {
         }
 
         @keyframes slideUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-      `}</style>
+      `}} />
 
       {showToast && (
         <div className="toast">

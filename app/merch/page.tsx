@@ -1,7 +1,9 @@
 import { prisma } from '../../lib/prisma'
 import StorefrontUI from './StorefrontUI'
 
-// 1. Define the Type based on your Prisma Schema
+// THIS IS THE MAGIC LINE: It forces Next.js to always fetch live data
+export const dynamic = "force-dynamic";
+
 interface Product {
   id: string;
   name: string;
@@ -12,20 +14,17 @@ interface Product {
   gradient: string;
 }
 
-// 2. Server Component: Fetches Data from SQLite
 export default async function MerchPage() {
   const databaseProducts = await prisma.product.findMany();
 
-  // Convert the database models into the shape our UI expects
-  const formattedProducts: Product[] = databaseProducts.map(product => ({
+  const formattedProducts: Product[] = databaseProducts.map((product: any) => ({
     id: product.id,
     name: product.name,
-    description: product.description,
     price: product.price,
-    tag: product.tag,
-    gradient: product.gradient,
-    // Parse the stringified JSON array back into an actual array of strings
-    specs: JSON.parse(product.specs) as string[]
+    tag: product.category || "Hardware",
+    description: product.description || "High-performance technical equipment.",
+    gradient: product.gradient || "from-gray-800 to-[#0a0a0a]",
+    specs: product.specs ? JSON.parse(product.specs) : ["Specifications updating soon..."]
   }));
 
   return (
