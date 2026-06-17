@@ -16,7 +16,7 @@ export async function createHardware(formData: FormData) {
     data: {
       name: name,
       price: price,
-      category: category, // FIXED: The slashes are gone, this will now save!
+      category: category, // FIXED: The slashes are gone, this will  save!
     },
   })
 
