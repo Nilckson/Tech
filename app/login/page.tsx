@@ -1,24 +1,22 @@
-import { login, signup } from '../admin/actions'
-
 export default function LoginPage({
   searchParams,
 }: {
   searchParams: { error?: string }
 }) {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50 p-4">
-      <div className="w-full max-w-md space-y-8 rounded-xl bg-white p-8 shadow-lg">
+    <div className="flex min-h-screen items-center justify-center bg-[#04050a] p-4 text-white">
+      <div className="w-full max-w-md space-y-8 rounded-xl bg-gray-900/50 p-8 shadow-2xl border border-white/10 backdrop-blur-sm">
         <div className="text-center">
-          <h2 className="text-3xl font-extrabold text-gray-900">
-            Welcome Back
+          <h2 className="text-3xl font-extrabold tracking-tight text-white">
+            System Access
           </h2>
-          <p className="mt-2 text-sm text-gray-600">
-            Sign in or create a new account
+          <p className="mt-2 text-sm text-gray-400">
+            Authenticate to continue
           </p>
         </div>
 
         {searchParams.error && (
-          <div className="rounded-md bg-red-50 p-4 text-sm text-red-700 border border-red-200">
+          <div className="rounded-md bg-red-900/50 p-4 text-sm text-red-400 border border-red-500/50">
             {searchParams.error}
           </div>
         )}
@@ -26,7 +24,7 @@ export default function LoginPage({
         <form className="mt-8 space-y-6">
           <div className="space-y-4">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-300">
                 Email address
               </label>
               <input
@@ -34,12 +32,12 @@ export default function LoginPage({
                 name="email"
                 type="email"
                 required
-                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
-                placeholder="you@example.com"
+                className="mt-1 block w-full rounded-md border border-gray-700 bg-black/50 px-3 py-2 text-white placeholder-gray-600 focus:border-[#22d3ee] focus:outline-none focus:ring-1 focus:ring-[#22d3ee] sm:text-sm"
+                placeholder="admin@nilckson.tech"
               />
             </div>
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="password" className="block text-sm font-medium text-gray-300">
                 Password
               </label>
               <input
@@ -47,7 +45,7 @@ export default function LoginPage({
                 name="password"
                 type="password"
                 required
-                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+                className="mt-1 block w-full rounded-md border border-gray-700 bg-black/50 px-3 py-2 text-white placeholder-gray-600 focus:border-[#22d3ee] focus:outline-none focus:ring-1 focus:ring-[#22d3ee] sm:text-sm"
                 placeholder="••••••••"
               />
             </div>
@@ -55,16 +53,16 @@ export default function LoginPage({
 
           <div className="flex flex-col space-y-3">
             <button
-              formAction={login}
-              className="flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              type="button"
+              className="flex w-full justify-center rounded-md border border-transparent bg-[#22d3ee] px-4 py-2 text-sm font-bold text-black shadow-sm hover:bg-[#06b6d4] focus:outline-none transition-colors"
             >
-              Log In
+              Initialize Login
             </button>
             <button
-              formAction={signup}
-              className="flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              type="button"
+              className="flex w-full justify-center rounded-md border border-white/20 bg-transparent px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-white/10 focus:outline-none transition-colors"
             >
-              Sign Up
+              Request Access
             </button>
           </div>
         </form>
