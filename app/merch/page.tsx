@@ -1,4 +1,7 @@
-import { login, signup } from './actions'
+import { PrismaClient } from '@prisma/client'
+import StorefrontUI from './StorefrontUI'
+
+export const dynamic = 'force-dynamic'
 
 export default function LoginPage({
   searchParams,
